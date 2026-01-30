@@ -144,6 +144,7 @@ const PortfolioSection: React.FC = () => {
             </div>
 
             <style>{`
+
         .section-header {
            display: flex;
            justify-content: space-between;
@@ -165,7 +166,7 @@ const PortfolioSection: React.FC = () => {
         .tab-switcher {
            background: #F3F4F6;
            padding: 6px;
-           border-radius: 12px;
+           border-radius: 99px; /* Max rounded */
            display: flex;
            gap: 6px;
         }
@@ -173,45 +174,46 @@ const PortfolioSection: React.FC = () => {
         .tab-btn {
            border: none;
            background: transparent;
-           padding: 10px 20px;
-           border-radius: 8px;
+           padding: 12px 28px;
+           border-radius: 99px; /* Pill shape */
            font-weight: 600;
            color: var(--text-secondary);
            cursor: pointer;
            display: flex;
            align-items: center;
            gap: 8px;
-           transition: all 0.2s;
+           transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .tab-btn.active {
            background: white;
            color: #4F46E5;
-           box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+           box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
         }
         
         .projects-grid {
            display: grid;
-           grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+           grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
            gap: 24px;
         }
         
         .project-card {
-           background: #F9FAFB;
-           border-radius: 20px;
-           padding: 30px;
-           border: 1px solid #E5E7EB;
-           transition: all 0.2s ease;
+           background: #FFFFFF;
+           border-radius: 32px; /* Extra rounded cards */
+           padding: 32px;
+           border: 1px solid #F3F4F6;
+           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
            position: relative;
            display: flex;
            flex-direction: column;
            gap: 24px;
+           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
         }
         
         .project-card:hover {
-           transform: translateY(-5px);
-           border-color: #C7D2FE;
-           box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.1);
+           transform: translateY(-8px);
+           border-color: #E0E7FF;
+           box-shadow: 0 20px 40px -5px rgba(79, 70, 229, 0.15);
         }
         
         .project-card.featured {
@@ -221,14 +223,14 @@ const PortfolioSection: React.FC = () => {
         }
 
         .project-icon-box {
-           width: 50px;
-           height: 50px;
-           background: white;
-           border-radius: 12px;
+           width: 60px;
+           height: 60px;
+           background: #F9FAFB;
+           border-radius: 20px; /* Softer icon box */
            display: flex;
            align-items: center;
            justify-content: center;
-           box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+           box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
         
         .project-meta {
@@ -239,32 +241,33 @@ const PortfolioSection: React.FC = () => {
         }
         
         .project-category {
-           font-size: 0.85rem;
-           font-weight: 600;
-           color: #6B7280;
+           font-size: 0.8rem;
+           font-weight: 700;
+           color: #9CA3AF;
            text-transform: uppercase;
-           letter-spacing: 0.5px;
+           letter-spacing: 1px;
         }
         
         .featured-badge {
-           background: #FCD34D;
-           color: #92400E;
+           background: #FEF3C7;
+           color: #D97706;
            font-size: 0.75rem;
            font-weight: 700;
-           padding: 4px 10px;
-           border-radius: 20px;
+           padding: 6px 14px;
+           border-radius: 99px;
         }
         
         .project-content h3 {
-           font-size: 1.4rem;
+           font-size: 1.5rem;
            margin-bottom: 12px;
            line-height: 1.3;
+           color: #111827;
         }
         
         .project-content p {
-           color: var(--text-secondary);
+           color: #4B5563;
            line-height: 1.6;
-           margin-bottom: 20px;
+           margin-bottom: 24px;
            flex-grow: 1;
         }
         
@@ -275,32 +278,35 @@ const PortfolioSection: React.FC = () => {
         }
         
         .tag {
-           background: white;
-           padding: 4px 12px;
+           background: #F3F4F6;
+           padding: 8px 16px; /* Slightly larger padding */
            border-radius: 99px;
-           font-size: 0.8rem;
+           font-size: 0.85rem;
            color: #4B5563;
-           border: 1px solid #E5E7EB;
+           font-weight: 500;
+           border: 1px solid transparent;
         }
         
         .project-link {
            position: absolute;
-           top: 30px;
-           right: 30px;
-           width: 40px;
-           height: 40px;
+           top: 32px;
+           right: 32px;
+           width: 48px;
+           height: 48px;
            border-radius: 50%;
-           background: white;
+           background: #F9FAFB;
            display: flex;
            align-items: center;
            justify-content: center;
            color: #9CA3AF;
-           border: 1px solid #E5E7EB;
+           border: 1px solid #F3F4F6;
            transition: all 0.2s;
         }
         .project-card:hover .project-link {
-           color: #4F46E5;
+           background: #4F46E5;
+           color: white;
            border-color: #4F46E5;
+           transform: rotate(45deg);
         }
         
         @media (max-width: 900px) {

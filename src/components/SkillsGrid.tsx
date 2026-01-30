@@ -125,6 +125,7 @@ const SkillsGrid: React.FC = () => {
       </div>
 
       <style>{`
+
         .skills-container {
            padding: 20px 0;
         }
@@ -160,8 +161,8 @@ const SkillsGrid: React.FC = () => {
 
         .skill-bars-container {
            background: #F9FAFB;
-           border-radius: 16px;
-           padding: 24px;
+           border-radius: 24px;
+           padding: 32px;
            margin-bottom: 10px;
         }
 
@@ -175,21 +176,21 @@ const SkillsGrid: React.FC = () => {
            justify-content: space-between;
            margin-bottom: 8px;
            font-size: 0.9rem;
-           font-weight: 500;
+           font-weight: 600;
            color: #374151;
         }
         
         .progress-bg {
-           height: 8px;
+           height: 10px;
            background: #E5E7EB;
-           border-radius: 4px;
+           border-radius: 99px;
            overflow: hidden;
         }
         
         .progress-fill {
            height: 100%;
            background: #4F46E5;
-           border-radius: 4px;
+           border-radius: 99px;
         }
         
         /* Different colors for right column progress bars if needed, or keep uniform */
@@ -198,27 +199,30 @@ const SkillsGrid: React.FC = () => {
         }
 
         .skill-category-card {
-           border: 1px solid #E5E7EB;
-           border-radius: 16px;
-           padding: 20px;
-           transition: all 0.2s;
+           border: 1px solid #F3F4F6;
+           border-radius: 24px;
+           padding: 24px;
+           transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+           background: white;
+           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
         }
         .skill-category-card:hover {
-           border-color: #D1D5DB;
-           background: #F9FAFB;
+           border-color: #E5E7EB;
+           transform: translateY(-4px);
+           box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.05);
         }
 
         .category-header {
            display: flex;
            align-items: center;
-           gap: 12px;
-           margin-bottom: 16px;
+           gap: 16px;
+           margin-bottom: 20px;
         }
         
         .icon-box {
-           width: 40px;
-           height: 40px;
-           border-radius: 10px;
+           width: 48px;
+           height: 48px;
+           border-radius: 12px;
            display: flex;
            align-items: center;
            justify-content: center;
@@ -227,22 +231,23 @@ const SkillsGrid: React.FC = () => {
         .category-header h4 {
            font-size: 1.1rem;
            margin: 0;
-           font-weight: 600;
+           font-weight: 700;
         }
 
         .skills-tags {
            display: flex;
            flex-wrap: wrap;
-           gap: 8px;
+           gap: 10px;
         }
         
         .skill-tag {
            font-size: 0.85rem;
-           padding: 4px 10px;
-           background: white;
-           border: 1px solid #E5E7EB;
-           border-radius: 6px;
+           padding: 6px 14px;
+           background: #F9FAFB;
+           border: 1px solid transparent;
+           border-radius: 99px;
            color: #4B5563;
+           font-weight: 500;
         }
 
         @media (max-width: 900px) {
