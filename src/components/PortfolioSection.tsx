@@ -1,7 +1,23 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, Folder, Camera, Code, Server, Smartphone, Video, Image as ImageIcon } from 'lucide-react';
+import { ArrowUpRight, Camera, Code, Server, Smartphone, Video, Image as ImageIcon } from 'lucide-react';
 
-const projects = {
+interface Project {
+    id: number;
+    title: string;
+    category: string;
+    desc: string;
+    tags: string[];
+    icon: React.ReactNode;
+    link: string;
+    featured?: boolean;
+}
+
+interface ProjectsData {
+    tech: Project[];
+    creative: Project[];
+}
+
+const projects: ProjectsData = {
     tech: [
         {
             id: 1,
@@ -73,8 +89,8 @@ const projects = {
     ]
 };
 
-const PortfolioSection = () => {
-    const [activeTab, setActiveTab] = useState('tech');
+const PortfolioSection: React.FC = () => {
+    const [activeTab, setActiveTab] = useState<'tech' | 'creative'>('tech');
 
     return (
         <section className="bento-card" id="portfolio">

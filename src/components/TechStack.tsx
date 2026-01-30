@@ -1,11 +1,14 @@
-import React from 'react';
-import { Layers, Database, Layout, Smartphone } from 'lucide-react';
+import { Layers, Database, Layout } from 'lucide-react';
 
-const TechItem = ({ label }) => (
+interface TechItemProps {
+  label: string;
+}
+
+const TechItem: React.FC<TechItemProps> = ({ label }) => (
   <span className="tech-pill">{label}</span>
 );
 
-const TechStack = () => {
+const TechStack: React.FC = () => {
   return (
     <section className="bento-card" style={{ textAlign: 'center' }}>
       <h2 style={{ marginBottom: '40px' }}>Powered by modern tech</h2>

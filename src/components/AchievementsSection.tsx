@@ -1,7 +1,16 @@
-import React from 'react';
-import { Trophy, Medal, Star, Award } from 'lucide-react';
+import { Trophy, Star, Video, Cpu, Camera, LucideIcon } from 'lucide-react';
 
-const AchievementCard = ({ year, level, title, description, badge, icon: Icon, color }) => (
+interface AchievementCardProps {
+    year: string;
+    level: string;
+    title: string;
+    description: string;
+    badge?: string;
+    icon: LucideIcon;
+    color: string;
+}
+
+const AchievementCard: React.FC<AchievementCardProps> = ({ year, level, title, description, badge, icon: Icon, color }) => (
     <div className="achievement-card">
         <div className="achievement-year">{year}</div>
         <div className="achievement-content">
@@ -20,7 +29,7 @@ const AchievementCard = ({ year, level, title, description, badge, icon: Icon, c
     </div>
 );
 
-const AchievementsSection = () => {
+const AchievementsSection: React.FC = () => {
     return (
         <section className="bento-card" id="achievements">
             <div className="section-header-center">
@@ -229,8 +238,5 @@ const AchievementsSection = () => {
         </section>
     );
 };
-
-// Import needed icons that weren't imported at top
-import { Video, Cpu, Camera } from 'lucide-react';
 
 export default AchievementsSection;

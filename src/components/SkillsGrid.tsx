@@ -1,7 +1,12 @@
 import React from 'react';
-import { Palette, Code, Terminal, Cloud, Shield, Cpu, Database, Video, Camera, Feather, Mic } from 'lucide-react';
+import { Cloud, Shield, Cpu, Video, Feather, Mic, LucideIcon } from 'lucide-react';
 
-const SkillBar = ({ label, percentage }) => (
+interface SkillBarProps {
+  label: string;
+  percentage: number;
+}
+
+const SkillBar: React.FC<SkillBarProps> = ({ label, percentage }) => (
   <div className="skill-bar-item">
     <div className="skill-label">
       <span>{label}</span>
@@ -13,7 +18,14 @@ const SkillBar = ({ label, percentage }) => (
   </div>
 );
 
-const SkillCategory = ({ icon: Icon, title, items, color }) => (
+interface SkillCategoryProps {
+  icon: LucideIcon;
+  title: string;
+  items: string[];
+  color: string;
+}
+
+const SkillCategory: React.FC<SkillCategoryProps> = ({ icon: Icon, title, items, color }) => (
   <div className="skill-category-card">
     <div className="category-header">
       <div className="icon-box" style={{ color: color, background: `${color}15` }}>
@@ -29,7 +41,7 @@ const SkillCategory = ({ icon: Icon, title, items, color }) => (
   </div>
 );
 
-const SkillsGrid = () => {
+const SkillsGrid: React.FC = () => {
   return (
     <section className="bento-card" id="skills">
       <div className="skills-container">

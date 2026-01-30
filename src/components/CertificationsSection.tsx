@@ -1,7 +1,14 @@
-import React from 'react';
 import { Award, CheckCircle } from 'lucide-react';
 
-const CertCard = ({ title, issuer, date, skills, color }) => (
+interface CertCardProps {
+    title: string;
+    issuer: string;
+    date: string;
+    skills: string[];
+    color: string;
+}
+
+const CertCard: React.FC<CertCardProps> = ({ title, issuer, date, skills, color }) => (
     <div className="cert-card">
         <div className="cert-icon" style={{ background: color }}>
             <Award size={24} color="white" />
@@ -14,7 +21,7 @@ const CertCard = ({ title, issuer, date, skills, color }) => (
                 <span>{date}</span>
             </div>
             <div className="cert-skills">
-                {skills.slice(0, 3).map((skill, idx) => (
+                {skills.slice(0, 3).map((skill: string, idx: number) => (
                     <span key={idx} className="mini-tag">{skill}</span>
                 ))}
                 {skills.length > 3 && <span className="more-tag">+{skills.length - 3}</span>}
@@ -23,7 +30,7 @@ const CertCard = ({ title, issuer, date, skills, color }) => (
     </div>
 );
 
-const CertificationsSection = () => {
+const CertificationsSection: React.FC = () => {
     // Colors for different providers/types
     const awsColor = "#FF9900";
     const googleColor = "#4285F4";

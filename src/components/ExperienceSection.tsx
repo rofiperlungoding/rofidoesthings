@@ -1,7 +1,14 @@
-import React from 'react';
 import { Briefcase, Calendar, MapPin } from 'lucide-react';
 
-const ExperienceItem = ({ role, company, duration, location, duties }) => (
+interface ExperienceItemProps {
+    role: string;
+    company: string;
+    duration: string;
+    location: string;
+    duties: string[];
+}
+
+const ExperienceItem: React.FC<ExperienceItemProps> = ({ role, company, duration, location, duties }) => (
     <div className="experience-item">
         <div className="timeline-dot"></div>
         <div className="exp-header">
@@ -15,14 +22,14 @@ const ExperienceItem = ({ role, company, duration, location, duties }) => (
             </div>
         </div>
         <ul className="exp-duties">
-            {duties.map((duty, idx) => (
+            {duties.map((duty: string, idx: number) => (
                 <li key={idx}>{duty}</li>
             ))}
         </ul>
     </div>
 );
 
-const ExperienceSection = () => {
+const ExperienceSection: React.FC = () => {
     return (
         <div className="experience-wrapper">
             <section className="bento-card">

@@ -133,7 +133,40 @@ button:focus-visible {
 
 .btn-secondary:hover {
   border-color: var(--text-primary);
+  background-color: transparent;
+  transform: translateY(-2px);
+}
+
+.btn-soft {
+  background-color: #F3F4F6;
+  color: var(--text-primary);
+  border: 1px solid transparent;
+}
+
+.btn-soft:hover {
+  background-color: #E5E7EB;
+  transform: translateY(-2px);
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
   background-color: white;
+  border: 1px solid #E5E7EB;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-icon:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 /* Skip Link */

@@ -1,36 +1,31 @@
-import React from 'react';
 import { ArrowRight, Download, Github } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-const Hero = () => {
+const Hero: React.FC = () => {
   return (
     <section className="bento-card hero-card">
       <div className="hero-grid">
         <div className="hero-text-content">
-          <div className="badge-wrapper">
-            <div className="pill-badge">
-              <span className="dot"></span> Brawijaya University • Gold Medalist
-            </div>
-          </div>
+
 
           <h1 className="hero-title">
-            <span className="hero-highlight">Computer Engineering Student</span> <br />
-            Tech Innovator & Creative Creator
+            <span className="hero-highlight">Computer Engineer</span> <br />
+            & Creative Technologist
           </h1>
 
           <p className="hero-subtitle">
-            Bridging technology innovation with visual storytelling.
-            Specializing in IoT, Cybersecurity, and Creative Documentation.
+            Specializing in IoT, Cybersecurity, and visual storytelling.
           </p>
 
           <div className="hero-actions">
             <a href="#portfolio" className="btn btn-primary">
               View My Projects <ArrowRight size={18} style={{ marginLeft: 8 }} strokeWidth={2.5} />
             </a>
-            <a href="/resume.pdf" target="_blank" className="btn btn-secondary" style={{ border: 'none', background: '#F3F4F6' }}>
-              <Download size={20} style={{ marginRight: 8 }} strokeWidth={2.5} /> Download Resume
-            </a>
-            <a href="https://github.com/rofiperlungoding" target="_blank" className="btn btn-icon" aria-label="Github">
-              <Github size={24} color="#374151" />
+            <Link to="/resume" className="btn btn-soft">
+              <Download size={20} style={{ marginRight: 8 }} strokeWidth={2.5} /> View Resume
+            </Link>
+            <a href="https://github.com/rofiperlungoding" target="_blank" className="btn-icon" aria-label="Github">
+              <Github size={22} />
             </a>
           </div>
         </div>
@@ -72,31 +67,7 @@ const Hero = () => {
           text-align: left;
         }
 
-        .badge-wrapper {
-          display: flex;
-          justify-content: flex-start;
-          margin-bottom: 24px;
-        }
 
-        .pill-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 8px 16px;
-          background: white;
-          border: 1px solid #E5E7EB;
-          border-radius: 99px;
-          font-size: 0.85rem;
-          font-weight: 600;
-          color: var(--text-secondary);
-          box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-        .dot {
-          width: 8px;
-          height: 8px;
-          background: #F59E0B; /* Gold color */
-          border-radius: 50%;
-        }
 
         .hero-title {
           font-size: 3.5rem;
@@ -127,19 +98,7 @@ const Hero = () => {
           align-items: center;
         }
         
-        .btn-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #F3F4F6;
-            transition: background 0.2s;
-        }
-        .btn-icon:hover {
-            background: #E5E7EB;
-        }
+
 
         .hero-photo-wrapper {
             position: relative;
@@ -229,7 +188,7 @@ const Hero = () => {
           .hero-text-content {
             text-align: center;
           }
-          .badge-wrapper, .hero-actions {
+          .hero-actions {
             justify-content: center;
           }
           .hero-subtitle {

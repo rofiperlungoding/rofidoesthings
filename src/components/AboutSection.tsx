@@ -1,7 +1,6 @@
-import React from 'react';
-import { User, Check, ArrowRight, Award, Trophy, ScrollText } from 'lucide-react';
+import { User, ArrowRight, Award, Trophy, ScrollText } from 'lucide-react';
 
-const AboutSection = () => {
+const AboutSection: React.FC = () => {
   return (
     <div className="about-grid-wrapper">
       {/* Introduction Card (Blue) */}

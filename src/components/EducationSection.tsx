@@ -1,7 +1,6 @@
-import React from 'react';
-import { GraduationCap, BookOpen, MapPin } from 'lucide-react';
+import { GraduationCap, MapPin } from 'lucide-react';
 
-const EducationSection = () => {
+const EducationSection: React.FC = () => {
     return (
         <section className="bento-card" id="education">
             <div className="section-header-left">
