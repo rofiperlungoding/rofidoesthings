@@ -1,34 +1,51 @@
-/* Global CSS with Design Tokens - Bento Grid Update */
-
-:root {
-  /* Colors */
-  --bg-app: #F5F7FA;
-  /* Light bluish grey for the app background */
-  --bg-card: #FFFFFF;
-  --bg-card-dark: #1E1B4B;
-  /* Deep indigo for feature cards */
-
-  --text-primary: #111827;
-  --text-secondary: #4B5563;
-  --text-inverse: #FFFFFF;
-
-  /* Accents */
-  --accent-blue: #3B82F6;
-  --accent-indigo: #6366F1;
-  --accent-teal: #14B8A6;
-  --accent-orange: #F97316;
-
-  /* Spacing & Borders */
-  --radius-lg: 32px;
-  --radius-md: 20px;
-  --radius-sm: 12px;
-
-  /* Shadows */
-  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/font/SFPRODISPLAYREGULAR.OTF') format('opentype');
+  font-weight: 400;
+  font-style: normal;
 }
 
-/* Reset & Base */
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/font/SFPRODISPLAYMEDIUM.OTF') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/font/SFPRODISPLAYBOLD.OTF') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+  /* Theme Colors - Stark White Theme */
+  --bg-main: #FFFFFF;
+  /* Pure White */
+  --bg-card: #FFFFFF;
+  /* White for cards */
+  --bg-card-hover: #F9FAFB;
+  /* Slate-50 for hover */
+
+  --text-primary: #000000;
+  /* Pitch Black */
+  --text-secondary: #475569;
+  /* Slate-600 */
+
+  --accent-blue: #2563EB;
+  /* Electric Blue (Keep same) */
+  --accent-blue-hover: #1D4ED8;
+  --accent-glow: rgba(37, 99, 235, 0.15);
+  /* Softer glow */
+
+  --border-subtle: #E2E8F0;
+  /* Slate-200 */
+  --border-highlight: #2563EB;
+
+  --font-display: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -36,163 +53,106 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--bg-app);
+  font-family: var(--font-display);
+  background-color: var(--bg-main);
   color: var(--text-primary);
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  padding: 20px;
-  /* Gap around the whole app */
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
 }
 
-ul {
-  list-style: none;
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  /* Slate-300 */
+  border-radius: 4px;
 }
 
-/* Focus States */
-a:focus-visible,
-button:focus-visible {
-  outline: 3px solid var(--accent-blue);
-  outline-offset: 2px;
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
 }
 
-/* Utilities */
+/* Global Utility Classes */
 .container {
-  max-width: 1440px;
-  width: 94%;
+  max-width: 1400px;
   margin: 0 auto;
+  padding: 0 40px;
 }
 
-/* Bento Card Utilities */
-.bento-card {
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  padding: 60px;
-  margin-bottom: 24px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-card);
-  transition: box-shadow 0.3s ease;
+.text-gradient-blue {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  /* Darker gradient for white bg */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.bento-card.dark {
-  background: var(--bg-card-dark);
-  color: var(--text-inverse);
-}
-
-.bento-card:hover {
-  box-shadow: var(--shadow-hover);
-}
-
-/* Buttons */
+/* Buttons - Reset to new style */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 14px 28px;
-  border-radius: 999px;
+  border-radius: 9999px;
+  /* Pill shape */
   font-weight: 600;
   font-size: 1rem;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
   cursor: pointer;
   border: none;
+  line-height: 1;
 }
 
 .btn-primary {
-  background-color: var(--text-primary);
-  color: var(--text-inverse);
+  background: var(--accent-blue);
+  color: white;
+  box-shadow: 0 4px 20px 0 rgba(37, 99, 235, 0.25);
 }
 
 .btn-primary:hover {
-  background-color: #000;
+  background: var(--accent-blue-hover);
   transform: translateY(-2px);
+  box-shadow: 0 8px 25px 0 rgba(37, 99, 235, 0.4);
 }
 
 .btn-secondary {
-  background-color: transparent;
-  border: 2px solid #E5E7EB;
-  color: var(--text-primary);
+  background: #F1F5F9;
+  /* Slate-100 */
+  color: #0F172A;
+  border: 1px solid #E2E8F0;
 }
 
 .btn-secondary:hover {
-  border-color: var(--text-primary);
-  background-color: transparent;
+  background: #E2E8F0;
+  border-color: #CBD5E1;
   transform: translateY(-2px);
 }
 
-.btn-soft {
-  background-color: #F3F4F6;
-  color: var(--text-primary);
-  border: 1px solid transparent;
+/* Bento/Card Base Styles for Reuse */
+.bento-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: 32px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.btn-soft:hover {
-  background-color: #E5E7EB;
-  transform: translateY(-2px);
+.bento-card:hover {
+  border-color: var(--border-highlight);
+  box-shadow: 0 0 40px -10px var(--accent-glow);
 }
 
-.btn-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background-color: white;
-  border: 1px solid #E5E7EB;
-  color: var(--text-secondary);
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.btn-icon:hover {
-  border-color: var(--text-primary);
-  color: var(--text-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-/* Skip Link */
-.skip-link {
-  position: absolute;
-  top: -100px;
-  left: 20px;
-  z-index: 9999;
-  background: black;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-}
-
-.skip-link:focus {
-  top: 20px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  body {
-    padding: 10px;
-  }
-
-  .bento-card {
-    padding: 30px 20px;
-    border-radius: 20px;
-  }
+section {
+  padding: 100px 0;
 }

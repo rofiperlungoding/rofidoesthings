@@ -1,255 +1,253 @@
+import React from 'react';
 import { User, ArrowRight, Award, Trophy, ScrollText } from 'lucide-react';
 
 const AboutSection: React.FC = () => {
   return (
-    <div className="about-grid-wrapper">
-      {/* Introduction Card (Blue) */}
-      <section className="bento-card dark" id="about">
-        <div className="feature-content">
-          <div className="badge-dark">About Me</div>
-          <h2>Tech-Creative Hybrid: Merging Logic & Aesthetics</h2>
+    <section className="container bento-card" id="about">
+      <div className="about-grid-wrapper">
+        {/* Main Introduction Grid Item */}
+        <div className="about-main">
+          <div className="badge-pill">About Me</div>
+          <h2>
+            <span className="text-gradient-blue">Bridging Logic & Imagination</span>
+            <br />To Build Digital Excellence.
+          </h2>
           <p>
-            Hello! I'm <strong>Muhammad Rofi Darmawan</strong>, a Computer Engineering student at Brawijaya University.
+            Hello! I'm <strong>Muhammad Rofi Darmawan</strong>. Technology isn't just about code for me;
+            it's the medium to translate complex ideas into intuitive, useful, and beautiful digital experiences.
           </p>
-          <p>
-            I believe technology isn't just about code, but also about communicating complex ideas into something easy to understand and visually compelling.
-          </p>
-          <p style={{ opacity: 0.8, fontSize: '0.95rem' }}>
-            Starting from robotics competitions, I now focus on IoT, Cybersecurity, and Creative Documentation.
+          <p className="sub-bio">
+            From robotics championships to modern web engineering, my journey is defined by a relentless pursuit
+            of quality and innovation.
           </p>
 
-          <div className="feature-actions">
-            <a href="#contact" className="btn" style={{ background: 'white', color: '#1E1B4B' }}>
-              Let's Collaborate <ArrowRight size={16} style={{ marginLeft: 8 }} strokeWidth={2.5} />
+          <div className="stats-row">
+            <div className="stat-item">
+              <span className="stat-num">10+</span>
+              <span className="stat-lbl">Competitions Won</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-num">5+</span>
+              <span className="stat-lbl">Major Awards</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-num">15+</span>
+              <span className="stat-lbl">Certifications</span>
+            </div>
+          </div>
+
+          <div className="action-row">
+            <a href="#contact" className="btn btn-primary">
+              Let's Collaborate <ArrowRight size={18} style={{ marginLeft: 8 }} />
             </a>
           </div>
         </div>
 
-        <div className="feature-visual">
-          <div className="stats-grid-visual">
-            <div className="stat-box">
-              <span className="stat-number">10+</span>
-              <span className="stat-label">Competitions</span>
-            </div>
-            <div className="stat-box">
-              <span className="stat-number">5+</span>
-              <span className="stat-label">Awards</span>
-            </div>
-            <div className="stat-box">
-              <span className="stat-number">15+</span>
-              <span className="stat-label">Certifications</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Right Column Stack */}
-      <div className="about-sidebar-stack">
-
-        {/* Focus Areas Card */}
-        <section className="bento-card focus-card">
+        {/* Right Column: Focus Areas */}
+        <div className="about-sidebar">
           <h3>Current Focus</h3>
           <ul className="focus-list">
             <li>
-              <div className="focus-icon"><Award size={18} color="#EF4444" /></div>
+              <div className="focus-icon"><Award size={20} color="#3B82F6" /></div>
               <div>
                 <strong>Tech Innovation</strong>
-                <span className="sub-text">IoT, CyberSec, Cloud</span>
+                <span className="sub-text">Frontend, IoT, Cloud Architecture</span>
               </div>
             </li>
             <li>
-              <div className="focus-icon"><Trophy size={18} color="#F59E0B" /></div>
+              <div className="focus-icon"><Trophy size={20} color="#F59E0B" /></div>
               <div>
-                <strong>Creative Docs</strong>
-                <span className="sub-text">Photo & Video Storytelling</span>
+                <strong>Creative Documentation</strong>
+                <span className="sub-text">Storytelling through Photo & Video</span>
               </div>
             </li>
             <li>
-              <div className="focus-icon"><ScrollText size={18} color="#10B981" /></div>
+              <div className="focus-icon"><ScrollText size={20} color="#10B981" /></div>
               <div>
-                <strong>Bridging Worlds</strong>
-                <span className="sub-text">Making tech accessible</span>
+                <strong>Knowledge Sharing</strong>
+                <span className="sub-text">Making technology accessible to all</span>
               </div>
             </li>
           </ul>
 
-          <div className="user-mini-profile">
-            <div className="avatar-circle">
-              <User strokeWidth={2.5} />
+          <div className="user-profile-card">
+            <div className="profile-image">
+              <User size={24} color="white" />
             </div>
-            <div>
-              <strong>Rofi Darmawan</strong>
-              <span>@rofidoesthings</span>
+            <div className="profile-details">
+              <div className="profile-name">
+                Rofi Darmawan
+                <svg className="verified-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M10.6026 2.40187C11.2468 1.28597 12.7532 1.28597 13.3974 2.40187L14.2888 3.94586C14.5492 4.39703 15.0211 4.66946 15.5332 4.66418L17.3149 4.64579C18.6044 4.63249 19.5768 5.79097 19.317 7.037L18.9576 8.76103C18.8533 9.26162 19.034 9.7753 19.421 10.0818L20.8069 11.1798C21.7853 11.9548 21.7853 13.4357 20.8069 14.2107L19.421 15.3087C19.034 15.6152 18.8533 16.1289 18.9576 16.6295L19.317 18.3535C19.5768 19.5995 18.6044 20.758 17.3149 20.7447L15.5332 20.7263C15.0211 20.721 14.5492 20.9935 14.2888 21.4446L13.3974 22.9886C12.7532 24.1045 11.2468 24.1045 10.6026 22.9886L9.71117 21.4446C9.45084 20.9935 8.97889 20.721 8.46684 20.7263L6.68512 20.7447C5.39564 20.758 4.42319 19.5995 4.68305 18.3535L5.04236 16.6295C5.14668 16.1289 4.96596 15.6152 4.57896 15.3087L3.19313 14.2107C2.21469 13.4357 2.21469 11.9548 3.19313 11.1798L4.57896 10.0818C4.96596 9.7753 5.14668 9.26162 5.04236 8.76103L4.68305 7.037C4.42319 5.79097 5.39564 4.63249 6.68512 4.64579L8.46684 4.66418C8.97889 4.66946 9.45084 4.39703 9.71117 3.94586L10.6026 2.40187Z" />
+                  <path d="M9.5 12.5L11.5 14.5L15.5 10.5" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <div className="profile-handle">@rofidoesthings</div>
             </div>
           </div>
-        </section>
+        </div>
       </div>
 
       <style>{`
         .about-grid-wrapper {
           display: grid;
-          grid-template-columns: 1.8fr 1fr;
-          gap: 24px;
+          grid-template-columns: 1.5fr 1fr;
+          gap: 60px; /* Increased gap */
+        }
+
+        .badge-pill {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 99px;
+            font-size: 0.8rem;
+            color: #94A3B8;
+            margin-bottom: 24px;
+        }
+
+        .about-main h2 {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .about-main p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            line-height: 1.6;
         }
         
-        .about-sidebar-stack {
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
-          height: 100%;
+        .sub-bio {
+            font-size: 1rem !important;
+            opacity: 0.8;
+            margin-bottom: 40px !important;
         }
 
-        .bento-card.dark {
-          background: #4338CA;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 60px;
-          height: 100%;
-          color: white;
-        }
-
-        .focus-card {
-           flex: 1;
-           display: flex;
-           flex-direction: column;
-           justify-content: center;
-           margin-bottom: 0;
-           background: white;
-        }
-
-        .feature-content {
-          max-width: 55%;
-        }
-        
-        .badge-dark {
-          display: inline-block;
-          background: rgba(255,255,255,0.15);
-          padding: 6px 12px;
-          border-radius: 6px;
-          font-size: 0.8rem;
-          font-weight: 600;
-          margin-bottom: 20px;
-          color: #E0E7FF;
-        }
-
-        .dark h2 {
-          font-size: 2rem;
-          margin-bottom: 20px;
-          line-height: 1.2;
-          color: white;
-        }
-        .dark p {
-          color: #E0E7FF;
-          margin-bottom: 16px;
-          line-height: 1.6;
-        }
-
-        .feature-visual {
+        .stats-row {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            gap: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-subtle);
+            margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
-        .stats-grid-visual {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-        }
-        
-        .stat-box {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 20px 30px;
-            border-radius: 16px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            transition: transform 0.2s;
-        }
-        .stat-box:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.15);
+        .stat-item {
+            display: flex;
+            flex-direction: column;
         }
 
-        .stat-number {
-            display: block;
+        .stat-num {
             font-size: 2rem;
-            font-weight: 800;
+            font-weight: 700;
+            color: white;
+            line-height: 1;
             margin-bottom: 4px;
-            background: linear-gradient(to right, #ffffff, #a5b4fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
-        .stat-label {
-            font-size: 0.9rem;
-            color: #C7D2FE;
+
+        .stat-lbl {
+            font-size: 0.85rem;
+            color: #64748B;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .about-sidebar {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-left: 1px solid var(--border-subtle);
+            padding-left: 60px;
+        }
+
+        .about-sidebar h3 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: white;
         }
 
         .focus-list {
-          margin-top: 20px;
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-bottom: 40px;
         }
+
         .focus-list li {
-          display: flex;
-          align-items: center;
-          gap: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
-        
+
         .focus-icon {
-            width: 40px;
-            height: 40px;
-            background: #F3F4F6;
-            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
         }
 
         .sub-text {
             display: block;
             font-size: 0.85rem;
-            color: var(--text-secondary);
+            color: #64748B;
             margin-top: 2px;
         }
+
+        .user-profile-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 16px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: auto;
+        }
+
+        .profile-image {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-name {
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.95rem;
+        }
         
-        .user-mini-profile {
-          margin-top: auto;
-          padding-top: 30px;
-          border-top: 1px solid #E5E7EB;
-          display: flex;
-          align-items: center;
-          gap: 12px;
+        .verified-icon {
+            color: var(--accent-blue);
         }
-        .avatar-circle {
-          width: 40px; 
-          height: 40px; 
-          background: #EEF2FF;
-          border-radius: 50%; 
-          display: flex; 
-          align-items: center; 
-          justify-content: center;
-          color: #4F46E5;
+
+        .profile-handle {
+            font-size: 0.8rem;
+            color: #64748B;
         }
-        .user-mini-profile strong { display: block; font-size: 0.95rem; }
-        .user-mini-profile span { font-size: 0.8rem; color: #666; }
 
         @media (max-width: 900px) {
-          .about-grid-wrapper { grid-template-columns: 1fr; }
-          .bento-card.dark { flex-direction: column; text-align: center; height: auto; padding: 40px; }
-          .feature-content { max-width: 100%; margin-bottom: 40px; }
-          .stats-grid-visual { grid-template-columns: repeat(3, 1fr); width: 100%; }
-        }
-        @media (max-width: 600px) {
-            .stats-grid-visual { grid-template-columns: 1fr; }
+            .about-grid-wrapper { grid-template-columns: 1fr; gap: 40px; }
+            .about-sidebar { border-left: none; padding-left: 0; border-top: 1px solid var(--border-subtle); padding-top: 40px; }
+            .about-main, .about-sidebar { text-align: center; }
+            .stats-row { justify-content: center; }
+            .focus-list li { text-align: left; }
         }
       `}</style>
-    </div>
+    </section>
   );
 };
 

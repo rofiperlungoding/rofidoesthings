@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './Navbar';
+
 import Hero from './Hero';
 import AboutSection from './AboutSection';
 import PortfolioSection from './PortfolioSection';
@@ -13,12 +13,11 @@ import Footer from './Footer';
 const Home: React.FC = () => {
     return (
         <>
-            <a href="#main-content" className="skip-link">Skip to main content</a>
-            <Navbar />
+            {/* Full Width Hero */}
+            <Hero />
 
             {/* Main Grid Wrapper */}
-            <main id="main-content" className="container" style={{ marginTop: '100px', display: 'flex', flexDirection: 'column', gap: '80px' }}>
-                <Hero />
+            <main id="main-content" className="container" style={{ marginTop: '0', display: 'flex', flexDirection: 'column', gap: '80px' }}>
                 <AboutSection />
                 <PortfolioSection />
                 <SkillsGrid />
@@ -29,16 +28,61 @@ const Home: React.FC = () => {
 
                 {/* CTA Card in Bento Style */}
                 <section className="bento-card" style={{
-                    background: 'linear-gradient(135deg, #4F46E5 0%, #06B6D4 100%)',
+                    background: '#000000', /* Pitch black premium look */
                     color: 'white',
                     textAlign: 'center',
-                    padding: '80px 20px'
+                    padding: '100px 40px',
+                    borderRadius: '40px',
+                    position: 'relative',
+                    overflow: 'hidden'
                 }}>
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>Ready to collaborate?</h2>
-                    <p style={{ opacity: 0.9, marginBottom: '32px', fontSize: '1.2rem' }}>
+                    <div style={{
+                        position: 'absolute',
+                        top: '-50%',
+                        left: '-20%',
+                        width: '140%',
+                        height: '200%',
+                        background: 'radial-gradient(circle at center, rgba(59,130,246,0.15) 0%, rgba(0,0,0,0) 70%)',
+                        pointerEvents: 'none'
+                    }} />
+
+                    <h2 style={{
+                        fontSize: '3.5rem',
+                        marginBottom: '24px',
+                        fontWeight: 700,
+                        letterSpacing: '-0.02em',
+                        background: 'linear-gradient(90deg, #fff, #94a3b8)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        position: 'relative'
+                    }}>
+                        Ready to collaborate?
+                    </h2>
+                    <p style={{
+                        opacity: 0.8,
+                        marginBottom: '40px',
+                        fontSize: '1.25rem',
+                        fontWeight: 400,
+                        maxWidth: '600px',
+                        marginLeft: 'auto',
+                        marginRight: 'auto',
+                        position: 'relative'
+                    }}>
                         Let's turn your vision into a digital masterpiece. Open for projects & opportunities.
                     </p>
-                    <a href="mailto:rofi.darmawan@outlook.com" className="btn" style={{ background: 'white', color: '#4F46E5' }}>
+                    <a href="mailto:rofi.darmawan@outlook.com" className="btn" style={{
+                        background: 'white',
+                        color: 'black',
+                        padding: '16px 36px',
+                        borderRadius: '99px',
+                        fontSize: '1.1rem',
+                        fontWeight: 600,
+                        textDecoration: 'none',
+                        boxShadow: '0 4px 12px rgba(255,255,255,0.15)',
+                        transition: 'transform 0.2s',
+                        display: 'inline-block',
+                        position: 'relative'
+                    }}>
                         Start a Project
                     </a>
                 </section>

@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 
 const ResumePage: React.FC = () => {
     return (
-        <div style={{ minHeight: '100vh', background: '#F5F7FA', padding: '40px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ minHeight: '100vh', background: 'var(--bg-main)', padding: '100px 20px 40px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {/* Header */}
             <div className="container" style={{ maxWidth: '1000px', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
-                <Link to="/" className="btn btn-soft" style={{ gap: '8px' }}>
+                <Link to="/" className="btn btn-secondary" style={{ gap: '8px' }}>
                     <ArrowLeft size={20} /> Back to Home
                 </Link>
                 <a href="/Resume_Rofi.pdf" download="Resume_Rofi.pdf" className="btn btn-primary" style={{ gap: '8px' }}>
@@ -16,13 +16,15 @@ const ResumePage: React.FC = () => {
             </div>
 
             {/* PDF Viewer Container */}
-            <div className="bento-card" style={{ maxWidth: '1000px', width: '100%', height: '80vh', padding: '0', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+            <div className="bento-card" style={{ maxWidth: '1000px', width: '100%', height: '80vh', padding: '0', overflow: 'hidden', display: 'flex', flexDirection: 'column', background: '#1E1E1E' }}>
                 <iframe
                     src="/Resume_Rofi.pdf"
                     style={{ width: '100%', height: '100%', border: 'none' }}
                     title="Resume Rofi"
                 >
-                    <p>Your browser does not support PDF embedding. <a href="/Resume_Rofi.pdf">Download the PDF</a> to view it.</p>
+                    <p style={{ color: 'white', textAlign: 'center', padding: '20px' }}>
+                        Your browser does not support PDF embedding. <a href="/Resume_Rofi.pdf" style={{ color: 'var(--accent-blue)' }}>Download the PDF</a> to view it.
+                    </p>
                 </iframe>
             </div>
         </div>

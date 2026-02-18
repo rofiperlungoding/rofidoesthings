@@ -1,14 +1,15 @@
+import React from 'react';
 import { GraduationCap, MapPin } from 'lucide-react';
 
 const EducationSection: React.FC = () => {
     return (
-        <section className="bento-card" id="education">
+        <section className="container bento-card" id="education">
             <div className="section-header-left">
                 <div className="icon-title">
                     <GraduationCap size={28} color="#059669" />
                     <h2>Education</h2>
                 </div>
-                <p>Academic foundation in Computer Engineering.</p>
+                <p>Academic foundation in Computer Engineering & Technology.</p>
             </div>
 
             <div className="education-grid">
@@ -55,6 +56,18 @@ const EducationSection: React.FC = () => {
             </div>
 
             <style>{`
+        .section-header-left {
+            margin-bottom: 40px;
+        }
+        .icon-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        .icon-title h2 { margin: 0; font-size: 2rem; color: white; }
+        .section-header-left p { color: var(--text-secondary); }
+
         .education-grid {
            display: grid;
            grid-template-columns: 1fr 1fr;
@@ -62,61 +75,67 @@ const EducationSection: React.FC = () => {
         }
 
         .edu-card {
-           background: #F9FAFB;
-           border: 1px solid #E5E7EB;
-           border-radius: 16px;
-           padding: 30px;
+           background: var(--bg-card);
+           border: 1px solid var(--border-subtle);
+           border-radius: 20px;
+           padding: 32px;
            position: relative;
         }
         
         .edu-card.current {
-           background: #F0FDF9; /* Light emerald tint */
-           border-color: #A7F3D0;
+           background: linear-gradient(145deg, rgba(16, 185, 129, 0.05) 0%, rgba(0,0,0,0) 100%);
+           border-color: rgba(16, 185, 129, 0.2);
         }
 
         .edu-badge {
            position: absolute;
-           top: 20px;
-           right: 20px;
+           top: 24px;
+           right: 24px;
            font-size: 0.75rem;
-           background: #E5E7EB;
-           padding: 4px 10px;
-           border-radius: 20px;
+           background: rgba(255,255,255,0.1);
+           padding: 6px 12px;
+           border-radius: 99px;
            font-weight: 600;
-           color: #4B5563;
+           color: var(--text-secondary);
+           border: 1px solid rgba(255,255,255,0.05);
         }
-        .edu-badge.completed { background: #E5E7EB; }
-        .current .edu-badge { background: #10B981; color: white; }
+        .current .edu-badge { 
+            background: rgba(16, 185, 129, 0.1); 
+            color: #34D399; 
+            border-color: rgba(16, 185, 129, 0.2);
+        }
 
         .edu-card h3 {
-           font-size: 1.25rem;
+           font-size: 1.4rem;
            margin-bottom: 8px;
            line-height: 1.3;
-           padding-right: 60px; /* Space for badge */
+           padding-right: 80px; /* Space for badge */
+           color: white;
         }
         
         .edu-card h4 {
-           font-size: 1rem;
-           color: var(--text-secondary);
+           font-size: 1.1rem;
+           color: var(--text-primary);
            font-weight: 500;
-           margin-bottom: 8px;
+           margin-bottom: 12px;
         }
         
         .edu-meta {
            display: flex;
            gap: 12px;
            font-size: 0.9rem;
-           color: #6B7280;
+           color: var(--text-secondary);
            margin-bottom: 24px;
         }
-        .edu-meta span { display: flex; align-items: center; gap: 4px; }
+        .edu-meta span { display: flex; align-items: center; gap: 6px; }
 
         .edu-details h5 {
-           font-size: 0.9rem;
+           font-size: 0.85rem;
            text-transform: uppercase;
-           letter-spacing: 0.5px;
-           color: #9CA3AF;
-           margin-bottom: 12px;
+           letter-spacing: 0.05em;
+           color: #64748B;
+           margin-bottom: 16px;
+           font-weight: 600;
         }
 
         .tags-cloud {
@@ -125,26 +144,31 @@ const EducationSection: React.FC = () => {
            gap: 8px;
         }
         .tags-cloud span {
-           background: white;
-           padding: 4px 10px;
-           border-radius: 6px;
+           background: rgba(255,255,255,0.03);
+           padding: 6px 12px;
+           border-radius: 8px;
            font-size: 0.85rem;
-           border: 1px solid #D1D5DB; /* Slightly darker border for contrast */
-           color: #374151;
+           border: 1px solid rgba(255,255,255,0.05);
+           color: var(--text-secondary);
         }
-        .current .tags-cloud span { border-color: #6EE7B7; }
+        .current .tags-cloud span { 
+            border-color: rgba(16, 185, 129, 0.15);
+            color: #D1FAE5;
+        }
 
         .edu-details p {
-           font-size: 0.95rem;
-           line-height: 1.5;
-           margin-bottom: 12px;
+           font-size: 1rem;
+           line-height: 1.6;
+           margin-bottom: 16px;
            font-style: italic;
-           color: #4B5563;
+           color: var(--text-secondary);
         }
         
         .edu-achievements {
-           font-size: 0.9rem;
-           color: #4B5563;
+           font-size: 0.95rem;
+           color: white;
+           padding-top: 16px;
+           border-top: 1px solid var(--border-subtle);
         }
 
         @media (max-width: 768px) {

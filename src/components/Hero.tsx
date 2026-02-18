@@ -1,210 +1,155 @@
-import { ArrowRight, Download, Github } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { ArrowRight, Code, Terminal, Cpu, Globe } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="bento-card hero-card">
-      <div className="hero-grid">
-        <div className="hero-text-content">
+    <section className="hero-section">
+      <div className="container hero-container">
 
 
-          <h1 className="hero-title">
-            <span className="hero-highlight">Computer Engineer</span> <br />
-            & Creative Technologist
-          </h1>
 
-          <p className="hero-subtitle">
-            Specializing in IoT, Cybersecurity, and visual storytelling.
-          </p>
+        {/* Main Heading */}
+        <h1 className="hero-title">
+          Tingkatkan Kualitas Digital<br />
+          <span className="text-gradient-blue">Dengan Frontend Engineering</span>
+        </h1>
 
-          <div className="hero-actions">
-            <a href="#portfolio" className="btn btn-primary">
-              View My Projects <ArrowRight size={18} style={{ marginLeft: 8 }} strokeWidth={2.5} />
-            </a>
-            <Link to="/resume" className="btn btn-soft">
-              <Download size={20} style={{ marginRight: 8 }} strokeWidth={2.5} /> View Resume
-            </Link>
-            <a href="https://github.com/rofiperlungoding" target="_blank" className="btn-icon" aria-label="Github">
-              <Github size={22} />
-            </a>
+        {/* Description */}
+        <p className="hero-desc">
+          Solusi one-stop untuk kebutuhan website modern. Kualitas premium,
+          performa tinggi, dan detail estetika yang memukau.
+        </p>
+
+        {/* Buttons */}
+        <div className="hero-actions">
+          <a href="#contact" className="btn btn-primary">
+            Mulai Konsultasi
+          </a>
+          <a href="#portfolio" className="btn btn-secondary">
+            Lihat Portfolio
+          </a>
+        </div>
+
+        {/* Tech Stack Strip (Logos) - Replaced with Icons for now */}
+        <div className="tech-strip">
+          <div className="tech-logos">
+            <div className="tech-item"><Code size={20} /> <span>React</span></div>
+            <div className="tech-item"><Terminal size={20} /> <span>TypeScript</span></div>
+            <div className="tech-item"><Cpu size={20} /> <span>IoT Core</span></div>
+            <div className="tech-item"><Globe size={20} /> <span>Next.js</span></div>
+            <div className="tech-item"><Code size={20} /> <span>Framer Motion</span></div>
           </div>
         </div>
 
-        <div className="hero-photo-wrapper">
-          <div className="photo-card">
-            <img src="/profile-rofi.png" alt="Rofi Profile" />
-
-          </div>
-        </div>
-      </div>
-
-      {/* Abstract Visual Elements */}
-      <div className="hero-visuals">
-        <div className="abstract-shape shape-1"></div>
-        <div className="abstract-shape shape-2"></div>
       </div>
 
       <style>{`
-        .hero-card {
-           min-height: 600px;
-           padding: 60px;
-           background: radial-gradient(circle at top right, #F0FDF4 0%, #FFFFFF 60%);
-           display: flex;
-           align-items: center;
-        }
-
-        .hero-grid {
-          display: grid;
-          grid-template-columns: 1.2fr 1fr;
-          gap: 60px;
-          align-items: center;
-          width: 100%;
-          position: relative;
-          z-index: 10;
-        }
-
-        .hero-text-content {
-          text-align: left;
-        }
-
-
-
-        .hero-title {
-          font-size: 3.5rem;
-          line-height: 1.1;
-          letter-spacing: -2px;
-          margin-bottom: 24px;
-          color: var(--text-primary);
+        .hero-section {
+            padding-top: 100px; /* Reduced space since navbar is gone */
+            padding-bottom: 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Background Spotlights - Super Soft & Wide */
+            background: radial-gradient(130% 90% at 50% -20%, rgba(37, 99, 235, 0.1) 0%, rgba(255,255,255,0) 100%);
         }
         
-        .hero-highlight {
-          background: linear-gradient(135deg, #059669 0%, #3B82F6 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1000px;
+            position: relative;
+            z-index: 2;
         }
 
-        .hero-subtitle {
-          font-size: 1.25rem;
-          color: var(--text-secondary);
-          max-width: 600px;
-          margin: 0 0 40px 0;
-          line-height: 1.6;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 99px;
+            font-size: 0.7rem;
+            color: #94A3B8;
+            font-weight: 600;
+            margin-bottom: 40px;
+            backdrop-filter: blur(8px);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-blue);
+        }
+
+        .hero-title {
+            font-size: 5rem; /* Huge impact */
+            line-height: 1.05;
+            margin-bottom: 32px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+        }
+
+        .hero-desc {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin-bottom: 50px;
+            line-height: 1.6;
+            font-weight: 400;
         }
 
         .hero-actions {
-          display: flex;
-          gap: 16px;
-          justify-content: flex-start;
-          align-items: center;
-        }
-        
-
-
-        .hero-photo-wrapper {
-            position: relative;
+            display: flex;
+            gap: 20px;
+            margin-bottom: 80px;
         }
 
-        .photo-card {
-           height: 480px;
-           width: 100%;
-           padding: 0;
-           background: rgba(255, 255, 255, 0.2);
-           backdrop-filter: blur(20px);
-           -webkit-backdrop-filter: blur(20px);
-           border: 1px solid rgba(255, 255, 255, 0.4);
-           border-radius: 24px;
-           display: flex;
-           align-items: flex-end;
-           justify-content: center;
-           overflow: visible; /* Changed to visible for floating badge */
-           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-           position: relative;
-        }
-        
-        .photo-card img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: bottom center;
-          transition: transform 0.3s ease;
-          border-radius: 24px;
-        }
-
-        .floating-badge {
-            position: absolute;
-            background: white;
-            padding: 10px 20px;
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            font-weight: 700;
-            color: #D97706;
-            border: 1px solid #FEF3C7;
-            animation: float 3s ease-in-out infinite;
-            z-index: 20;
-        }
-        
-        .gold-medal-badge {
-            top: 40px;
-            right: -20px;
-            background: #FFFBEB;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Abstract Shapes */
-        .abstract-shape {
-          position: absolute;
-          filter: blur(80px);
-          opacity: 0.4;
-          z-index: 0;
-        }
-        .shape-1 {
-          width: 400px;
-          height: 400px;
-          background: #34D399;
-          top: -100px;
-          left: -100px;
-          border-radius: 50%;
-        }
-        .shape-2 {
-          width: 300px;
-          height: 300px;
-          background: #60A5FA;
-          bottom: -50px;
-          right: -50px;
-          border-radius: 50%;
-        }
-
-        @media (max-width: 900px) {
-          .hero-grid {
-            grid-template-columns: 1fr;
-            text-align: center;
-            gap: 40px;
-          }
-          .hero-text-content {
-            text-align: center;
-          }
-          .hero-actions {
+        /* Tech Strip */
+        .tech-strip {
+            width: 100%;
+            display: flex;
             justify-content: center;
-          }
-          .hero-subtitle {
-            margin: 0 auto 30px;
-          }
-          .hero-title {
-            font-size: 2.5rem;
-          }
-          .photo-card {
-            height: 400px;
-            overflow: hidden; /* Reset overflow for mobile if needed */
-          }
-          .floating-badge {
-             right: 10px;
-             top: 20px;
-          }
+        }
+        
+        .tech-logos {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            opacity: 0.4;
+            transition: opacity 0.3s;
+        }
+        .tech-logos:hover {
+            opacity: 0.8;
+        }
+        
+        .tech-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section { padding-top: 140px; }
+            .hero-title { font-size: 2.75rem; }
+            .hero-desc { font-size: 1.1rem; padding: 0 20px; }
+            .hero-actions { flex-direction: column; width: 100%; max-width: 320px; gap: 12px; }
+            .btn { width: 100%; }
+            .tech-logos { gap: 30px; }
         }
       `}</style>
     </section>

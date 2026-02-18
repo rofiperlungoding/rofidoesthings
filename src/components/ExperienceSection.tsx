@@ -1,3 +1,4 @@
+import React from 'react';
 import { Briefcase, Calendar, MapPin } from 'lucide-react';
 
 interface ExperienceItemProps {
@@ -31,14 +32,14 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({ role, company, duration
 
 const ExperienceSection: React.FC = () => {
     return (
-        <div className="experience-wrapper">
-            <section className="bento-card">
+        <div className="experience-wrapper container">
+            <section className="bento-card" id="experience">
                 <div className="section-header-left">
                     <div className="icon-title">
                         <Briefcase size={28} color="#4F46E5" />
                         <h2>Professional Experience</h2>
                     </div>
-                    <p>Building real-world skills through hands-on work.</p>
+                    <p>Building real-world skills through hands-on work in fast-paced environments.</p>
                 </div>
 
                 <div className="experience-timeline">
@@ -83,72 +84,76 @@ const ExperienceSection: React.FC = () => {
             </section>
 
             <style>{`
-         .experience-wrapper {
-            /* Container if needed */
+         .section-header-left {
+            margin-bottom: 40px;
          }
 
          .icon-title {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 8px;
+            gap: 16px;
+            margin-bottom: 12px;
          }
-         .icon-title h2 { margin: 0; font-size: 2rem; }
+         .icon-title h2 { margin: 0; font-size: 2rem; color: white; }
+         .section-header-left p { color: var(--text-secondary); }
 
          .experience-timeline {
             position: relative;
-            padding-left: 20px;
+            padding-left: 10px;
             display: flex;
             flex-direction: column;
-            gap: 40px;
-            margin-top: 40px;
+            gap: 50px;
+            margin-top: 20px;
          }
 
          .timeline-line {
             position: absolute;
-            left: 0;
-            top: 10px;
+            left: 39px;
+            top: 20px;
             bottom: 0;
             width: 2px;
-            background: #E5E7EB;
+            background: linear-gradient(to bottom, var(--accent-blue), transparent);
+            opacity: 0.3;
          }
 
          .experience-item {
             position: relative;
-            padding-left: 30px;
+            padding-left: 80px;
          }
 
          .timeline-dot {
             position: absolute;
-            left: -6px; /* center on 2px line (line at left:0 is 1px?? no line is width 2px at left 0. dot width 14px -> left -6) */
-            left: -6px;
+            left: 32px;
             top: 6px;
-            width: 14px;
-            height: 14px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
-            background: white;
-            border: 3px solid #4F46E5;
+            background: var(--bg-card);
+            border: 2px solid var(--accent-blue);
             z-index: 2;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
          }
 
          .exp-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
          }
 
          .exp-role-company h4 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 4px;
-            color: var(--text-primary);
+            color: white;
+            font-weight: 600;
          }
          
          .company-name {
-            font-weight: 600;
-            color: #4F46E5;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--accent-blue);
          }
 
          .exp-meta {
@@ -160,8 +165,8 @@ const ExperienceSection: React.FC = () => {
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            gap: 6px;
-            margin-bottom: 2px;
+            gap: 8px;
+            margin-bottom: 4px;
          }
 
          .exp-duties {
@@ -171,22 +176,28 @@ const ExperienceSection: React.FC = () => {
          }
          .exp-duties li {
             position: relative;
-            padding-left: 18px;
-            margin-bottom: 6px;
-            line-height: 1.5;
-            color: #4B5563;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
          }
          .exp-duties li::before {
             content: "•";
             position: absolute;
             left: 0;
-            color: #9CA3AF;
+            color: #4F46E5;
+            font-size: 1.2rem;
+            line-height: 1;
          }
 
          @media (max-width: 600px) {
             .exp-header { flex-direction: column; align-items: flex-start; }
-            .exp-meta { text-align: left; margin-top: 4px; }
+            .exp-meta { text-align: left; margin-top: 8px; }
             .meta-row { justify-content: flex-start; }
+            .timeline-line { left: 19px; }
+            .timeline-dot { left: 12px; }
+            .experience-item { padding-left: 50px; }
          }
        `}</style>
         </div>

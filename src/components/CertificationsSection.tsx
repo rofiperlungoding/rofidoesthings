@@ -1,3 +1,4 @@
+import React from 'react';
 import { Award, CheckCircle } from 'lucide-react';
 
 interface CertCardProps {
@@ -33,18 +34,26 @@ const CertCard: React.FC<CertCardProps> = ({ title, issuer, date, skills, color 
 const CertificationsSection: React.FC = () => {
     // Colors for different providers/types
     const awsColor = "#FF9900";
-    const googleColor = "#4285F4";
     const azureColor = "#0078D4";
     const devColor = "#10B981";
+    const metaColor = "#1877F2";
 
     return (
-        <section className="bento-card" id="certifications">
+        <section className="container bento-card" id="certifications">
             <div className="section-header-left">
                 <h2>📜 Professional Certifications</h2>
-                <p>Validating expertise through 15+ international certifications from AWS, Google, Microsoft, and more.</p>
+                <p>Validating expertise through 15+ international certifications.</p>
             </div>
 
             <div className="certs-grid">
+                {/* Frontend */}
+                <CertCard
+                    title="Meta Frontend Developer"
+                    issuer="Meta"
+                    date="2024"
+                    skills={["React", "Advanced JS", "UX/UI"]}
+                    color={metaColor}
+                />
                 {/* Cloud */}
                 <CertCard
                     title="Architecting on AWS"
@@ -68,15 +77,6 @@ const CertificationsSection: React.FC = () => {
                     date="2024"
                     skills={["Machine Learning", "Computer Vision", "NLP"]}
                     color={azureColor}
-                />
-
-                {/* Security */}
-                <CertCard
-                    title="Google Security Operations"
-                    issuer="Google"
-                    date="2024"
-                    skills={["Threat Detection", "SIEM", "Incident Response"]}
-                    color={googleColor}
                 />
 
                 {/* Programming */}
@@ -111,7 +111,7 @@ const CertificationsSection: React.FC = () => {
             </div>
 
             <div className="cert-footer">
-                <p><CheckCircle size={16} /> <em>Continuous Learning:</em> Regularly updating skills via new certification programs.</p>
+                <p><CheckCircle size={16} color="var(--accent-blue)" /> <em>Continuous Learning:</em> Regularly updating skills via new certification programs.</p>
             </div>
 
             <style>{`
@@ -121,6 +121,7 @@ const CertificationsSection: React.FC = () => {
         .section-header-left h2 {
            font-size: 2rem;
            margin-bottom: 8px;
+           color: white;
         }
         .section-header-left p {
            color: var(--text-secondary);
@@ -135,27 +136,26 @@ const CertificationsSection: React.FC = () => {
         .cert-card {
            display: flex;
            gap: 16px;
-           background: #FFFFFF;
-           border: 1px solid #E5E7EB;
+           background: var(--bg-card);
+           border: 1px solid var(--border-subtle);
            padding: 20px;
-           border-radius: 12px;
+           border-radius: 16px;
            transition: transform 0.2s;
         }
         .cert-card:hover {
            transform: translateY(-3px);
-           box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-           border-color: #D1D5DB;
+           border-color: var(--border-highlight);
         }
 
         .cert-icon {
            width: 48px;
            height: 48px;
-           border-radius: 10px;
+           border-radius: 12px;
            display: flex;
            align-items: center;
            justify-content: center;
            flex-shrink: 0;
-           box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+           box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         .cert-content {
@@ -164,19 +164,21 @@ const CertificationsSection: React.FC = () => {
 
         .cert-content h4 {
            font-size: 1rem;
-           margin-bottom: 4px;
+           margin-bottom: 6px;
            line-height: 1.3;
+           color: white;
+           font-weight: 600;
         }
 
         .cert-meta {
            font-size: 0.8rem;
            color: var(--text-secondary);
-           margin-bottom: 10px;
+           margin-bottom: 12px;
            display: flex;
            align-items: center;
            gap: 6px;
         }
-        .dot-separator { font-weight: 700; color: #D1D5DB; }
+        .dot-separator { font-weight: 700; color: #4B5563; }
 
         .cert-skills {
            display: flex;
@@ -185,22 +187,23 @@ const CertificationsSection: React.FC = () => {
         }
 
         .mini-tag {
-           font-size: 0.7rem;
-           background: #F3F4F6;
-           padding: 2px 8px;
-           border-radius: 4px;
-           color: #4B5563;
+           font-size: 0.75rem;
+           background: rgba(255,255,255,0.05);
+           padding: 3px 8px;
+           border-radius: 6px;
+           color: #94A3B8;
+           border: 1px solid rgba(255,255,255,0.05);
         }
         .more-tag {
            font-size: 0.7rem;
-           color: #9CA3AF;
-           padding: 2px 4px;
+           color: #64748B;
+           padding: 3px 4px;
         }
         
         .cert-footer {
             margin-top: 30px;
             padding-top: 20px;
-            border-top: 1px solid #E5E7EB;
+            border-top: 1px solid var(--border-subtle);
             font-size: 0.9rem;
             color: var(--text-secondary);
         }

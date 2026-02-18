@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cloud, Shield, Cpu, Video, Feather, Mic, LucideIcon } from 'lucide-react';
+import { Cloud, Cpu, Video, Feather, Mic, LucideIcon, Layout } from 'lucide-react';
 
 interface SkillBarProps {
   label: string;
@@ -43,185 +43,180 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ icon: Icon, title, items,
 
 const SkillsGrid: React.FC = () => {
   return (
-    <section className="bento-card" id="skills">
-      <div className="skills-container">
+    <section className="container bento-card" id="skills">
+      <div className="section-header-center">
+        <h2 className="section-title">Skills & Expertise</h2>
+        <p className="section-subtitle">Comprehensive Technical & Creative Toolset</p>
+      </div>
 
-        <div className="skills-intro">
-          <h2 className="section-title">Skills & Expertise</h2>
-          <p>Tech Stack & Creative Tools yang saya kuasai dan gunakan dalam project.</p>
-        </div>
+      <div className="skills-grid-wrapper">
+        {/* Technical Column */}
+        <div className="skills-column">
+          <h3 className="column-title">Technical Proficiency</h3>
 
-        <div className="skills-main-grid">
-          {/* Technical Column */}
-          <div className="skills-column">
-            <h3 className="column-title">Technical Proficiency</h3>
-
-            <div className="skill-category-group">
-              <div className="skill-bars-container">
-                <SkillBar label="Python" percentage={80} />
-                <SkillBar label="C Programming" percentage={70} />
-                <SkillBar label="JavaScript" percentage={65} />
-                <SkillBar label="HTML/CSS" percentage={80} />
-              </div>
-
-              <SkillCategory
-                icon={Cloud}
-                title="Cloud & DevOps"
-                items={["AWS IoT Core", "AWS Lambda", "EC2", "S3", "Azure AI", "Git"]}
-                color="#F59E0B"
-              />
-
-              <SkillCategory
-                icon={Shield}
-                title="Cybersecurity"
-                items={["OWASP Top 10", "Secure Coding", "Risk Assessment", "SecOps"]}
-                color="#10B981"
-              />
-
-              <SkillCategory
-                icon={Cpu}
-                title="IoT & Embedded"
-                items={["Arduino", "ESP32", "MQTT", "Raspberry Pi", "Sensors"]}
-                color="#3B82F6"
-              />
+          <div className="skill-card-group">
+            <div className="skill-bars-card-inner">
+              <SkillBar label="Python" percentage={80} />
+              <SkillBar label="C++ / Arduino" percentage={80} />
+              <SkillBar label="TypeScript/JavaScript" percentage={85} />
+              <SkillBar label="React & Frontend" percentage={90} />
             </div>
-          </div>
 
-          {/* Creative Column */}
-          <div className="skills-column">
-            <h3 className="column-title">Creative Mastery</h3>
+            <SkillCategory
+              icon={Cloud}
+              title="Cloud & DevOps"
+              items={["AWS IoT Core", "AWS Lambda", "EC2", "S3", "Azure AI", "Git"]}
+              color="#F59E0B"
+            />
 
-            <div className="skill-category-group">
-              <div className="skill-bars-container">
-                <SkillBar label="Portrait Photography" percentage={80} />
-                <SkillBar label="Event Documentation" percentage={90} />
-                <SkillBar label="Landscape" percentage={70} />
-              </div>
+            <SkillCategory
+              icon={Layout}
+              title="Frontend Magic"
+              items={["React", "TypeScript", "Tailwind CSS", "Framer Motion", "UI/UX"]}
+              color="#6366F1"
+            />
 
-              <SkillCategory
-                icon={Video}
-                title="Videography & Edit"
-                items={["Premiere Pro", "DaVinci Resolve", "Color Grading", "Cinematography"]}
-                color="#EC4899"
-              />
-
-              <SkillCategory
-                icon={Feather}
-                title="Content Creation"
-                items={["Storytelling", "Scriptwriting", "Visual Comm", "Copywriting"]}
-                color="#8B5CF6"
-              />
-
-              <SkillCategory
-                icon={Mic}
-                title="Audio Production"
-                items={["Sound Design", "Audio Mixing", "Music Composition"]}
-                color="#F43F5E"
-              />
-            </div>
+            <SkillCategory
+              icon={Cpu}
+              title="IoT & Embedded"
+              items={["Arduino", "ESP32", "MQTT", "Raspberry Pi", "Sensors"]}
+              color="#3B82F6"
+            />
           </div>
         </div>
 
+        {/* Creative Column */}
+        <div className="skills-column">
+          <h3 className="column-title">Creative Mastery</h3>
+
+          <div className="skill-card-group">
+            <div className="skill-bars-card-inner">
+              <SkillBar label="Portrait Photography" percentage={80} />
+              <SkillBar label="Event Documentation" percentage={90} />
+              <SkillBar label="Landscape Composition" percentage={70} />
+            </div>
+
+            <SkillCategory
+              icon={Video}
+              title="Videography & Edit"
+              items={["Premiere Pro", "DaVinci Resolve", "Color Grading", "Cinematography"]}
+              color="#EC4899"
+            />
+
+            <SkillCategory
+              icon={Feather}
+              title="Content Creation"
+              items={["Storytelling", "Scriptwriting", "Visual Comm", "Copywriting"]}
+              color="#8B5CF6"
+            />
+
+            <SkillCategory
+              icon={Mic}
+              title="Audio Production"
+              items={["Sound Design", "Audio Mixing", "Music Composition"]}
+              color="#F43F5E"
+            />
+          </div>
+        </div>
       </div>
 
       <style>{`
-
-        .skills-container {
-           padding: 20px 0;
+        .section-header-center {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
-        .skills-intro {
-           text-align: center;
-           margin-bottom: 50px;
-        }
-        .skills-intro p {
-           color: var(--text-secondary);
-           font-size: 1.1rem;
+        .section-title {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 16px;
         }
         
-        .skills-main-grid {
-           display: grid;
-           grid-template-columns: 1fr 1fr;
-           gap: 60px;
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
         }
-        
+
+        .skills-grid-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
         .column-title {
-           font-size: 1.5rem;
-           margin-bottom: 30px;
-           padding-bottom: 15px;
-           border-bottom: 2px solid #F3F4F6;
-           color: var(--text-primary);
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            color: white;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-subtle);
         }
 
-        .skill-category-group {
-           display: flex;
-           flex-direction: column;
-           gap: 24px;
+        .skill-card-group {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
         }
 
-        .skill-bars-container {
-           background: #F9FAFB;
-           border-radius: 24px;
-           padding: 32px;
-           margin-bottom: 10px;
+        .skill-bars-card-inner {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-subtle);
+            padding: 24px;
+            border-radius: 20px;
         }
 
         .skill-bar-item {
-           margin-bottom: 16px;
+            margin-bottom: 16px;
         }
         .skill-bar-item:last-child { margin-bottom: 0; }
-        
+
         .skill-label {
-           display: flex;
-           justify-content: space-between;
-           margin-bottom: 8px;
-           font-size: 0.9rem;
-           font-weight: 600;
-           color: #374151;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
         }
         
         .progress-bg {
-           height: 10px;
-           background: #E5E7EB;
-           border-radius: 99px;
-           overflow: hidden;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 99px;
+            overflow: hidden;
         }
         
         .progress-fill {
-           height: 100%;
-           background: #4F46E5;
-           border-radius: 99px;
+            height: 100%;
+            background: var(--accent-blue);
+            border-radius: 99px;
         }
         
-        /* Different colors for right column progress bars if needed, or keep uniform */
         .skills-column:nth-child(2) .progress-fill {
             background: #EC4899;
         }
 
         .skill-category-card {
-           border: 1px solid #F3F4F6;
-           border-radius: 24px;
+           border: 1px solid var(--border-subtle);
+           border-radius: 20px;
            padding: 24px;
-           transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-           background: white;
-           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+           background: rgba(255,255,255,0.02);
+           transition: all 0.2s;
         }
         .skill-category-card:hover {
-           border-color: #E5E7EB;
-           transform: translateY(-4px);
-           box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.05);
+           border-color: var(--border-highlight);
+           background: rgba(255,255,255,0.04);
         }
 
         .category-header {
            display: flex;
            align-items: center;
            gap: 16px;
-           margin-bottom: 20px;
+           margin-bottom: 16px;
         }
         
         .icon-box {
-           width: 48px;
-           height: 48px;
+           width: 44px;
+           height: 44px;
            border-radius: 12px;
            display: flex;
            align-items: center;
@@ -231,27 +226,32 @@ const SkillsGrid: React.FC = () => {
         .category-header h4 {
            font-size: 1.1rem;
            margin: 0;
-           font-weight: 700;
+           font-weight: 600;
+           color: white;
         }
 
         .skills-tags {
            display: flex;
            flex-wrap: wrap;
-           gap: 10px;
+           gap: 8px;
         }
         
         .skill-tag {
-           font-size: 0.85rem;
-           padding: 6px 14px;
-           background: #F9FAFB;
-           border: 1px solid transparent;
+           font-size: 0.8rem;
+           padding: 6px 12px;
+           background: rgba(255,255,255,0.05);
+           border: 1px solid rgba(255,255,255,0.05);
            border-radius: 99px;
-           color: #4B5563;
-           font-weight: 500;
+           color: var(--text-secondary);
+           transition: all 0.2s;
+        }
+        .skill-tag:hover {
+            color: white;
+            background: rgba(255,255,255,0.1);
         }
 
         @media (max-width: 900px) {
-           .skills-main-grid { grid-template-columns: 1fr; gap: 40px; }
+            .skills-grid-wrapper { grid-template-columns: 1fr; gap: 60px; }
         }
       `}</style>
     </section>
