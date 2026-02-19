@@ -1,157 +1,187 @@
 import React from 'react';
-import { ArrowRight, Code, Terminal, Cpu, Globe } from 'lucide-react';
+import { Code, Settings, Cloud } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
     <section className="hero-section">
       <div className="container hero-container">
-
-
+        {/* Eyebrow Tag */}
+        <div className="hero-eyebrow accent-text">
+          Rofi Darmawan · Engineer & Builder
+        </div>
 
         {/* Main Heading */}
         <h1 className="hero-title">
-          Tingkatkan Kualitas Digital<br />
-          <span className="text-gradient-blue">Dengan Frontend Engineering</span>
+          <span className="accent-text">Built to Build</span><br />
+          What Doesn't Exist Yet.
         </h1>
 
         {/* Description */}
         <p className="hero-desc">
-          Solusi one-stop untuk kebutuhan website modern. Kualitas premium,
-          performa tinggi, dan detail estetika yang memukau.
+          Computer Engineer. Creator. Driven by purpose, defined by craft.
         </p>
 
         {/* Buttons */}
         <div className="hero-actions">
-          <a href="#contact" className="btn btn-primary">
-            Mulai Konsultasi
+          <a href="#portfolio" className="btn btn-dark">
+            See My Work
           </a>
-          <a href="#portfolio" className="btn btn-secondary">
-            Lihat Portfolio
+          <a href="mailto:rofi.darmawan@outlook.com" className="btn btn-outline accent-border-btn">
+            Get in Touch
           </a>
         </div>
 
-        {/* Tech Stack Strip (Logos) - Replaced with Icons for now */}
+        {/* Tech Stack Strip */}
         <div className="tech-strip">
           <div className="tech-logos">
-            <div className="tech-item"><Code size={20} /> <span>React</span></div>
-            <div className="tech-item"><Terminal size={20} /> <span>TypeScript</span></div>
-            <div className="tech-item"><Cpu size={20} /> <span>IoT Core</span></div>
-            <div className="tech-item"><Globe size={20} /> <span>Next.js</span></div>
-            <div className="tech-item"><Code size={20} /> <span>Framer Motion</span></div>
+            <div className="tech-item"><Code size={16} className="accent-text" /> <span>React & TypeScript</span></div>
+            <div className="tech-item"><Settings size={16} className="accent-text" /> <span>IoT Systems</span></div>
+            <div className="tech-item"><Cloud size={16} className="accent-text" /> <span>Cloud Architecture</span></div>
           </div>
         </div>
-
       </div>
 
       <style>{`
         .hero-section {
-            padding-top: 100px; /* Reduced space since navbar is gone */
-            padding-bottom: 100px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            /* Background Spotlights - Super Soft & Wide */
-            background: radial-gradient(130% 90% at 50% -20%, rgba(37, 99, 235, 0.1) 0%, rgba(255,255,255,0) 100%);
+            justify-content: center;
+            background: #FFFFFF;
+            padding: 0 24px;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(120% 120% at 50% 120%, transparent 40%, rgba(37, 99, 235, 0.1) 80%, rgba(37, 99, 235, 0.15) 100%);
+            pointer-events: none;
+            z-index: 1;
         }
         
         .hero-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            max-width: 1000px;
-            position: relative;
+            max-width: 800px;
+            text-align: center;
             z-index: 2;
+            padding-bottom: 8vh;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 16px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 99px;
-            font-size: 0.7rem;
-            color: #94A3B8;
+        .hero-eyebrow {
+            font-size: 0.75rem;
             font-weight: 600;
-            margin-bottom: 40px;
-            backdrop-filter: blur(8px);
-            letter-spacing: 0.05em;
             text-transform: uppercase;
-        }
-
-        .badge-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--accent-blue);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent-blue);
+            letter-spacing: 0.4em;
+            margin-bottom: 40px;
         }
 
         .hero-title {
-            font-size: 5rem; /* Huge impact */
+            font-size: 5rem;
             line-height: 1.05;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
             font-weight: 700;
-            letter-spacing: -0.03em;
-            color: var(--text-primary);
+            letter-spacing: -0.04em;
+            color: #000000;
+        }
+
+        .accent-text {
+            color: #2563EB;
         }
 
         .hero-desc {
             font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 640px;
-            margin-bottom: 50px;
+            color: #475569;
+            max-width: 600px;
+            margin-bottom: 56px;
             line-height: 1.6;
             font-weight: 400;
         }
 
         .hero-actions {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             margin-bottom: 80px;
         }
 
-        /* Tech Strip */
+        .btn-dark {
+            background: #000;
+            color: #fff;
+            padding: 16px 36px;
+            border-radius: 99px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-dark:hover {
+            opacity: 0.85;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #1E293B;
+            padding: 16px 40px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border: 1px solid #E2E8F0;
+            transition: all 0.2s ease;
+        }
+
+        .accent-border-btn {
+            border-color: rgba(37, 99, 235, 0.2);
+            color: #2563EB;
+        }
+
+        .btn-outline:hover {
+            background: rgba(37, 99, 235, 0.04);
+            border-color: #2563EB;
+            color: #2563EB;
+        }
+
         .tech-strip {
-            width: 100%;
-            display: flex;
-            justify-content: center;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .tech-strip:hover {
+            opacity: 1;
         }
         
         .tech-logos {
             display: flex;
-            justify-content: center;
-            gap: 60px;
+            gap: 40px;
             flex-wrap: wrap;
-            opacity: 0.4;
-            transition: opacity 0.3s;
-        }
-        .tech-logos:hover {
-            opacity: 0.8;
+            justify-content: center;
         }
         
         .tech-item {
             display: flex;
             align-items: center;
             gap: 10px;
-            color: var(--text-secondary);
+            color: #1E293B;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.85rem;
         }
 
         @media (max-width: 768px) {
-            .hero-section { padding-top: 140px; }
-            .hero-title { font-size: 2.75rem; }
-            .hero-desc { font-size: 1.1rem; padding: 0 20px; }
-            .hero-actions { flex-direction: column; width: 100%; max-width: 320px; gap: 12px; }
-            .btn { width: 100%; }
-            .tech-logos { gap: 30px; }
+            .hero-title { font-size: 3rem; }
+            .hero-desc { font-size: 1.1rem; }
+            .hero-actions { flex-direction: column; width: 100%; }
+            .tech-logos { gap: 24px; }
+            .hero-eyebrow { letter-spacing: 0.2em; font-size: 0.7rem; }
         }
-      `}</style>
+    `}</style>
     </section>
   );
 };

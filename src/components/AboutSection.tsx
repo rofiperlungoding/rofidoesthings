@@ -1,5 +1,5 @@
 import React from 'react';
-import { User, ArrowRight, Award, Trophy, ScrollText } from 'lucide-react';
+import { ArrowRight, Award, Trophy, ScrollText } from 'lucide-react';
 
 const AboutSection: React.FC = () => {
   return (
@@ -9,7 +9,7 @@ const AboutSection: React.FC = () => {
         <div className="about-main">
           <div className="badge-pill">About Me</div>
           <h2>
-            <span className="text-gradient-blue">Bridging Logic & Imagination</span>
+            <span className="accent-text">Bridging Logic & Imagination</span>
             <br />To Build Digital Excellence.
           </h2>
           <p>
@@ -37,7 +37,7 @@ const AboutSection: React.FC = () => {
           </div>
 
           <div className="action-row">
-            <a href="#contact" className="btn btn-primary">
+            <a href="#contact" className="btn-premium-accent">
               Let's Collaborate <ArrowRight size={18} style={{ marginLeft: 8 }} />
             </a>
           </div>
@@ -72,14 +72,14 @@ const AboutSection: React.FC = () => {
 
           <div className="user-profile-card">
             <div className="profile-image">
-              <User size={24} color="white" />
+              <img src="/profile-rofi.png" alt="Rofi Darmawan" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div className="profile-details">
               <div className="profile-name">
                 Rofi Darmawan
                 <svg className="verified-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M10.6026 2.40187C11.2468 1.28597 12.7532 1.28597 13.3974 2.40187L14.2888 3.94586C14.5492 4.39703 15.0211 4.66946 15.5332 4.66418L17.3149 4.64579C18.6044 4.63249 19.5768 5.79097 19.317 7.037L18.9576 8.76103C18.8533 9.26162 19.034 9.7753 19.421 10.0818L20.8069 11.1798C21.7853 11.9548 21.7853 13.4357 20.8069 14.2107L19.421 15.3087C19.034 15.6152 18.8533 16.1289 18.9576 16.6295L19.317 18.3535C19.5768 19.5995 18.6044 20.758 17.3149 20.7447L15.5332 20.7263C15.0211 20.721 14.5492 20.9935 14.2888 21.4446L13.3974 22.9886C12.7532 24.1045 11.2468 24.1045 10.6026 22.9886L9.71117 21.4446C9.45084 20.9935 8.97889 20.721 8.46684 20.7263L6.68512 20.7447C5.39564 20.758 4.42319 19.5995 4.68305 18.3535L5.04236 16.6295C5.14668 16.1289 4.96596 15.6152 4.57896 15.3087L3.19313 14.2107C2.21469 13.4357 2.21469 11.9548 3.19313 11.1798L4.57896 10.0818C4.96596 9.7753 5.14668 9.26162 5.04236 8.76103L4.68305 7.037C4.42319 5.79097 5.39564 4.63249 6.68512 4.64579L8.46684 4.66418C8.97889 4.66946 9.45084 4.39703 9.71117 3.94586L10.6026 2.40187Z" />
-                  <path d="M9.5 12.5L11.5 14.5L15.5 10.5" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M9.5 12.5L11.5 14.5L15.5 10.5" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
               <div className="profile-handle">@rofidoesthings</div>
@@ -98,8 +98,8 @@ const AboutSection: React.FC = () => {
         .badge-pill {
             display: inline-block;
             padding: 6px 14px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.1);
             border-radius: 99px;
             font-size: 0.8rem;
             color: #94A3B8;
@@ -110,6 +110,32 @@ const AboutSection: React.FC = () => {
             font-size: 2.5rem;
             margin-bottom: 24px;
             line-height: 1.2;
+            color: #000;
+        }
+
+        .accent-text {
+            color: #2563EB;
+        }
+
+        .btn-premium-accent {
+            background: #2563EB;
+            color: #fff;
+            padding: 16px 36px;
+            border-radius: 99px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-premium-accent:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
         }
 
         .about-main p {
@@ -142,7 +168,7 @@ const AboutSection: React.FC = () => {
         .stat-num {
             font-size: 2rem;
             font-weight: 700;
-            color: white;
+            color: var(--text-primary);
             line-height: 1;
             margin-bottom: 4px;
         }
@@ -165,7 +191,7 @@ const AboutSection: React.FC = () => {
         .about-sidebar h3 {
             font-size: 1.5rem;
             margin-bottom: 30px;
-            color: white;
+            color: var(--text-primary);
         }
 
         .focus-list {
@@ -183,11 +209,8 @@ const AboutSection: React.FC = () => {
         }
 
         .focus-icon {
-            width: 44px;
-            height: 44px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 12px;
+            width: auto;
+            height: auto;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -201,8 +224,8 @@ const AboutSection: React.FC = () => {
         }
 
         .user-profile-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
+            background: rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.05);
             padding: 16px;
             border-radius: 16px;
             display: flex;
@@ -219,11 +242,12 @@ const AboutSection: React.FC = () => {
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
 
         .profile-name {
             font-weight: 700;
-            color: white;
+            color: var(--text-primary);
             display: flex;
             align-items: center;
             gap: 6px;

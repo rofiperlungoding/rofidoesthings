@@ -11,7 +11,6 @@ interface ExperienceItemProps {
 
 const ExperienceItem: React.FC<ExperienceItemProps> = ({ role, company, duration, location, duties }) => (
     <div className="experience-item">
-        <div className="timeline-dot"></div>
         <div className="exp-header">
             <div className="exp-role-company">
                 <h4>{role}</h4>
@@ -32,56 +31,53 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({ role, company, duration
 
 const ExperienceSection: React.FC = () => {
     return (
-        <div className="experience-wrapper container">
-            <section className="bento-card" id="experience">
-                <div className="section-header-left">
-                    <div className="icon-title">
-                        <Briefcase size={28} color="#4F46E5" />
-                        <h2>Professional Experience</h2>
-                    </div>
-                    <p>Building real-world skills through hands-on work in fast-paced environments.</p>
+        <section className="container bento-card" id="experience">
+            <div className="section-header-left">
+                <div className="icon-title">
+                    <Briefcase size={28} color="#4F46E5" />
+                    <h2>Professional Experience</h2>
                 </div>
+                <p>Building real-world skills through hands-on work in fast-paced environments.</p>
+            </div>
 
-                <div className="experience-timeline">
-                    <div className="timeline-line"></div>
+            <div className="experience-grid">
 
-                    <ExperienceItem
-                        role="Promotions Intern"
-                        company="Suhud Adiyanto"
-                        duration="July 2025"
-                        location="South Jakarta, Jakarta"
-                        duties={[
-                            "Coordinated logistics for promotional events and managed inventory.",
-                            "Collaborated with sales team to develop promotional activities.",
-                            "Contributed to video/photo shoots for marketing materials."
-                        ]}
-                    />
+                <ExperienceItem
+                    role="Promotions Intern"
+                    company="Suhud Adiyanto"
+                    duration="July 2025"
+                    location="South Jakarta, Jakarta"
+                    duties={[
+                        "Coordinated logistics for promotional events and managed inventory.",
+                        "Collaborated with sales team to develop promotional activities.",
+                        "Contributed to video/photo shoots for marketing materials."
+                    ]}
+                />
 
-                    <ExperienceItem
-                        role="Event Documentation Officer"
-                        company="MA Pembangunan Jakarta"
-                        duration="Sep 2023 - Mar 2024"
-                        location="South Tangerang, Banten"
-                        duties={[
-                            "Created comprehensive internal process documentation.",
-                            "Conducted regular audits to ensure documentation compliance.",
-                            "Collaborated with teams to gather info for project docs."
-                        ]}
-                    />
+                <ExperienceItem
+                    role="Event Documentation Officer"
+                    company="MA Pembangunan Jakarta"
+                    duration="Sep 2023 - Mar 2024"
+                    location="South Tangerang, Banten"
+                    duties={[
+                        "Created comprehensive internal process documentation.",
+                        "Conducted regular audits to ensure documentation compliance.",
+                        "Collaborated with teams to gather info for project docs."
+                    ]}
+                />
 
-                    <ExperienceItem
-                        role="Event Documentation Trainee"
-                        company="MA Pembangunan Jakarta"
-                        duration="Sep 2022 - Apr 2023"
-                        location="South Tangerang, Banten"
-                        duties={[
-                            "Engaged guests and managed registration desk.",
-                            "Collaborated with team for seamless event operations.",
-                            "Reviewed and updated event documentation."
-                        ]}
-                    />
-                </div>
-            </section>
+                <ExperienceItem
+                    role="Event Documentation Trainee"
+                    company="MA Pembangunan Jakarta"
+                    duration="Sep 2022 - Apr 2023"
+                    location="South Tangerang, Banten"
+                    duties={[
+                        "Engaged guests and managed registration desk.",
+                        "Collaborated with team for seamless event operations.",
+                        "Reviewed and updated event documentation."
+                    ]}
+                />
+            </div>
 
             <style>{`
          .section-header-left {
@@ -94,59 +90,45 @@ const ExperienceSection: React.FC = () => {
             gap: 16px;
             margin-bottom: 12px;
          }
-         .icon-title h2 { margin: 0; font-size: 2rem; color: white; }
+         .icon-title h2 { margin: 0; font-size: 2rem; color: var(--text-primary); }
          .section-header-left p { color: var(--text-secondary); }
 
-         .experience-timeline {
-            position: relative;
-            padding-left: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 50px;
+         .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
             margin-top: 20px;
          }
 
-         .timeline-line {
-            position: absolute;
-            left: 39px;
-            top: 20px;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--accent-blue), transparent);
-            opacity: 0.3;
-         }
-
          .experience-item {
-            position: relative;
-            padding-left: 80px;
-         }
-
-         .timeline-dot {
-            position: absolute;
-            left: 32px;
-            top: 6px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
             background: var(--bg-card);
-            border: 2px solid var(--accent-blue);
-            z-index: 2;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.2s;
+         }
+         
+         .experience-item:hover {
+            border-color: var(--border-highlight);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
          }
 
          .exp-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
             gap: 12px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 16px;
          }
 
          .exp-role-company h4 {
             font-size: 1.3rem;
             margin-bottom: 4px;
-            color: white;
+            color: var(--text-primary);
             font-weight: 600;
          }
          
@@ -158,8 +140,11 @@ const ExperienceSection: React.FC = () => {
 
          .exp-meta {
             text-align: right;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
+            background: rgba(0,0,0,0.03);
+            padding: 8px 12px;
+            border-radius: 8px;
          }
          .meta-row {
             display: flex;
@@ -168,6 +153,7 @@ const ExperienceSection: React.FC = () => {
             gap: 8px;
             margin-bottom: 4px;
          }
+         .meta-row:last-child { margin-bottom: 0; }
 
          .exp-duties {
             list-style-type: none;
@@ -191,16 +177,14 @@ const ExperienceSection: React.FC = () => {
             line-height: 1;
          }
 
-         @media (max-width: 600px) {
+         @media (max-width: 900px) {
+            .experience-grid { grid-template-columns: 1fr; }
             .exp-header { flex-direction: column; align-items: flex-start; }
-            .exp-meta { text-align: left; margin-top: 8px; }
+            .exp-meta { text-align: left; margin-top: 8px; width: 100%; justify-content: flex-start; }
             .meta-row { justify-content: flex-start; }
-            .timeline-line { left: 19px; }
-            .timeline-dot { left: 12px; }
-            .experience-item { padding-left: 50px; }
          }
        `}</style>
-        </div>
+        </section>
     );
 };
 

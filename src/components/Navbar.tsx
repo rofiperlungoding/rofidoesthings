@@ -14,9 +14,9 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Beranda', href: '#' },
-    { name: 'Layanan', href: '#services' },
-    { name: 'Tentang', href: '#about' },
+    { name: 'Home', href: '#' },
+    { name: 'Services', href: '#services' },
+    { name: 'About', href: '#about' },
     { name: 'Portfolio', href: '#portfolio' },
   ];
 
@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
           {/* CTA Button */}
           <div className="nav-actions">
             <a href="mailto:rofi.darmawan@outlook.com" className="btn btn-primary nav-btn">
-              Hubungi Kami
+              Contact Me
             </a>
             <button className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
               {isOpen ? <X color="white" /> : <Menu color="white" />}
@@ -66,7 +66,7 @@ const Navbar: React.FC = () => {
             </a>
           ))}
           <a href="mailto:rofi.darmawan@outlook.com" className="btn btn-primary mobile-cta">
-            Hubungi Kami <ArrowRight size={16} style={{ marginLeft: 8 }} />
+            Contact Me <ArrowRight size={16} style={{ marginLeft: 8 }} />
           </a>
         </div>
       </div>

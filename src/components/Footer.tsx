@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
               <MapPin size={18} /> <span>South Tangerang, Indonesia</span>
             </div>
             <div className="contact-item">
-              <Globe size={18} /> <span>Bahasa Indonesia (Native) / English (C1)</span>
+              <Globe size={18} /> <span>Professional Proficiency: English (C1)</span>
             </div>
           </div>
         </div>
@@ -67,11 +67,11 @@ const Footer: React.FC = () => {
 
       <style>{`
         .site-footer {
-           background: black;
+           background: var(--bg-card);
            padding: 80px 0 30px;
            border-top: 1px solid var(--border-subtle);
            margin-top: 80px;
-           color: white;
+           color: var(--text-primary);
         }
 
         .footer-grid {
@@ -85,7 +85,7 @@ const Footer: React.FC = () => {
            font-size: 2rem;
            font-weight: 800;
            margin-bottom: 16px;
-           background: linear-gradient(135deg, white 0%, #94A3B8 100%);
+           background: linear-gradient(135deg, black 0%, #64748B 100%);
            -webkit-background-clip: text;
            -webkit-text-fill-color: transparent;
         }
@@ -112,13 +112,13 @@ const Footer: React.FC = () => {
            transition: color 0.2s;
         }
         .contact-item:hover {
-            color: white;
+            color: var(--text-primary);
         }
 
         .footer-col h4 {
            font-size: 1.2rem;
            margin-bottom: 24px;
-           color: white;
+           color: var(--text-primary);
            font-weight: 600;
         }
 
@@ -160,13 +160,13 @@ const Footer: React.FC = () => {
            width: 42px;
            height: 42px;
            border-radius: 12px;
-           background: rgba(255,255,255,0.05);
+           background: rgba(0,0,0,0.05);
            display: flex;
            align-items: center;
            justify-content: center;
-           color: white;
+           color: var(--text-secondary);
            transition: all 0.2s;
-           border: 1px solid rgba(255,255,255,0.05);
+           border: 1px solid rgba(0,0,0,0.05);
         }
         .social-icons a:hover {
            background: var(--accent-blue);
@@ -176,7 +176,7 @@ const Footer: React.FC = () => {
 
         .footer-bottom {
            padding-top: 30px;
-           border-top: 1px solid rgba(255,255,255,0.05);
+           border-top: 1px solid var(--border-subtle);
            display: flex;
            justify-content: space-between;
            color: #64748B;

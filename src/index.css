@@ -62,26 +62,33 @@ body {
   position: relative;
 }
 
-body::before {
+.background-grid {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 2000px;
-  /* Cover the initial scroll areas */
+  height: 100%;
   z-index: -1;
   pointer-events: none;
 
-  /* The Grid: 100px cells */
+  /* Combined: Soft Blue Glow + Technical Grid */
   background-image:
-    linear-gradient(to right, rgba(37, 99, 235, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(37, 99, 235, 0.04) 1px, transparent 1px);
-  background-size: 100px 100px;
+    /* The Faded Blue Shadow (Glow) */
+    radial-gradient(circle at 0% 1000px, rgba(37, 99, 235, 0.15), transparent 600px),
+    radial-gradient(circle at 100% 1000px, rgba(37, 99, 235, 0.15), transparent 600px),
+    /* The Grid Lines */
+    linear-gradient(to right, rgba(37, 99, 235, 0.4) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(37, 99, 235, 0.4) 1.5px, transparent 1.5px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+  background-repeat: no-repeat, no-repeat, repeat, repeat;
 
-  /* Vignette Fade: Stronger fade for absolute positioning */
-  mask-image: radial-gradient(circle at 50% 0%, black 20%, transparent 80%);
-  -webkit-mask-image: radial-gradient(circle at 50% 0%, black 20%, transparent 80%);
+  /* Vertical Focus: SUPER SMOOTH fade-in from top, peak at 1000px */
+  mask-image:
+    linear-gradient(to bottom, transparent 0px, rgba(0, 0, 0, 0.1) 300px, black 1000px, black 1500px, rgba(0, 0, 0, 0.1) 2500px, transparent 100%),
+    linear-gradient(to right, black 0%, transparent 20%, transparent 80%, black 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
 }
 
 body::after {

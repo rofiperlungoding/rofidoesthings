@@ -65,7 +65,7 @@ const EducationSection: React.FC = () => {
             gap: 16px;
             margin-bottom: 12px;
         }
-        .icon-title h2 { margin: 0; font-size: 2rem; color: white; }
+        .icon-title h2 { margin: 0; font-size: 2rem; color: var(--text-primary); }
         .section-header-left p { color: var(--text-secondary); }
 
         .education-grid {
@@ -92,12 +92,12 @@ const EducationSection: React.FC = () => {
            top: 24px;
            right: 24px;
            font-size: 0.75rem;
-           background: rgba(255,255,255,0.1);
+           background: rgba(0,0,0,0.05);
            padding: 6px 12px;
            border-radius: 99px;
            font-weight: 600;
            color: var(--text-secondary);
-           border: 1px solid rgba(255,255,255,0.05);
+           border: 1px solid rgba(0,0,0,0.05);
         }
         .current .edu-badge { 
             background: rgba(16, 185, 129, 0.1); 
@@ -110,7 +110,7 @@ const EducationSection: React.FC = () => {
            margin-bottom: 8px;
            line-height: 1.3;
            padding-right: 80px; /* Space for badge */
-           color: white;
+           color: var(--text-primary);
         }
         
         .edu-card h4 {
@@ -144,11 +144,11 @@ const EducationSection: React.FC = () => {
            gap: 8px;
         }
         .tags-cloud span {
-           background: rgba(255,255,255,0.03);
+           background: rgba(0,0,0,0.03);
            padding: 6px 12px;
            border-radius: 8px;
            font-size: 0.85rem;
-           border: 1px solid rgba(255,255,255,0.05);
+           border: 1px solid rgba(0,0,0,0.05);
            color: var(--text-secondary);
         }
         .current .tags-cloud span { 
@@ -166,7 +166,7 @@ const EducationSection: React.FC = () => {
         
         .edu-achievements {
            font-size: 0.95rem;
-           color: white;
+           color: var(--text-primary);
            padding-top: 16px;
            border-top: 1px solid var(--border-subtle);
         }

@@ -16,8 +16,8 @@ const AchievementCard: React.FC<AchievementCardProps> = ({ year, level, title, d
         <div className="achievement-year">{year}</div>
         <div className="achievement-content">
             <div className="achievement-header">
-                <div className="achievement-icon" style={{ background: `${color}15`, color: color, borderColor: `${color}30` }}>
-                    <Icon size={20} />
+                <div className="achievement-icon">
+                    <Icon size={20} color={color} />
                 </div>
                 <div className="achievement-meta">
                     <span className="achievement-level" style={{ color: color }}>{level} Level</span>
@@ -107,7 +107,7 @@ const AchievementsSection: React.FC = () => {
         .section-header-center h2 {
            font-size: 2.5rem;
            margin-bottom: 12px;
-           color: white;
+           color: var(--text-primary);
         }
         .section-header-center p {
            color: var(--text-secondary);
@@ -133,14 +133,14 @@ const AchievementsSection: React.FC = () => {
         .achievement-card:hover {
            border-color: var(--border-highlight);
            transform: translateY(-5px);
-           background: rgba(255,255,255,0.03);
+           background: var(--bg-card-hover);
         }
 
         .achievement-year {
            position: absolute;
            top: 0;
            right: 0;
-           background: rgba(255,255,255,0.05);
+           background: rgba(0,0,0,0.05);
            padding: 6px 14px;
            border-bottom-left-radius: 16px;
            font-size: 0.8rem;
@@ -157,14 +157,10 @@ const AchievementsSection: React.FC = () => {
         }
 
         .achievement-icon {
-           width: 48px;
-           height: 48px;
-           border-radius: 12px;
            display: flex;
            align-items: center;
            justify-content: center;
            flex-shrink: 0;
-           border: 1px solid transparent;
         }
 
         .achievement-level {
@@ -180,8 +176,8 @@ const AchievementsSection: React.FC = () => {
            font-size: 1.15rem;
            line-height: 1.3;
            margin: 0;
-           color: white;
-           font-weight: 600;
+           color: var(--text-primary);
+           font-weight: 700;
         }
 
         .achievement-card p {
@@ -193,20 +189,20 @@ const AchievementsSection: React.FC = () => {
 
         .achievement-badge {
            display: inline-block;
-           background: rgba(255,255,255,0.03);
+           background: rgba(0,0,0,0.03);
            border: 1px dashed var(--border-subtle);
            padding: 6px 12px;
            border-radius: 8px;
            font-size: 0.85rem;
            font-weight: 500;
-           color: #E2E8F0;
+           color: var(--text-secondary);
         }
 
         .special-awards-banner {
-           background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%);
+           background: var(--bg-card);
            border-radius: 24px;
            padding: 32px;
-           color: white;
+           color: var(--text-primary);
            display: flex;
            align-items: center;
            justify-content: space-between;
@@ -214,12 +210,12 @@ const AchievementsSection: React.FC = () => {
            gap: 24px;
            position: relative;
            overflow: hidden;
-           border: 1px solid rgba(255,255,255,0.05);
-           box-shadow: 0 20px 50px -20px rgba(0,0,0,0.5);
+           border: 1px solid var(--border-subtle);
+           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
         
         .special-awards-title {
-           font-weight: 700;
+           font-weight: 800;
            font-size: 1.25rem;
            position: relative;
            z-index: 1;
@@ -237,30 +233,22 @@ const AchievementsSection: React.FC = () => {
            display: flex;
            align-items: center;
            gap: 10px;
-           font-size: 0.9rem;
-           background: rgba(255,255,255,0.08);
+           font-size: 0.95rem;
+           font-weight: 600;
+           background: rgba(0,0,0,0.05);
            padding: 8px 16px;
            border-radius: 99px;
            border: 1px solid rgba(255,255,255,0.05);
            transition: background 0.2s;
-           color: #CBD5E1;
+           color: var(--text-primary);
         }
         .sa-item:hover {
-            background: rgba(255,255,255,0.15);
-            color: white;
+            background: rgba(0,0,0,0.1);
+            color: var(--text-primary);
         }
         
         /* Glow effect */
-        .special-awards-banner::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(99,102,241,0.2) 0%, transparent 70%);
-            pointer-events: none;
-        }
+
 
         @media (max-width: 768px) {
            .special-awards-banner { flex-direction: column; align-items: flex-start; }

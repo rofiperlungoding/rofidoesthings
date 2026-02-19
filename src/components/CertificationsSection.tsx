@@ -11,8 +11,8 @@ interface CertCardProps {
 
 const CertCard: React.FC<CertCardProps> = ({ title, issuer, date, skills, color }) => (
     <div className="cert-card">
-        <div className="cert-icon" style={{ background: color }}>
-            <Award size={24} color="white" />
+        <div className="cert-icon">
+            <Award size={24} color={color} />
         </div>
         <div className="cert-content">
             <h4>{title}</h4>
@@ -121,7 +121,7 @@ const CertificationsSection: React.FC = () => {
         .section-header-left h2 {
            font-size: 2rem;
            margin-bottom: 8px;
-           color: white;
+           color: var(--text-primary);
         }
         .section-header-left p {
            color: var(--text-secondary);
@@ -129,7 +129,7 @@ const CertificationsSection: React.FC = () => {
 
         .certs-grid {
            display: grid;
-           grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+           grid-template-columns: 1fr 1fr;
            gap: 20px;
         }
 
@@ -138,8 +138,8 @@ const CertificationsSection: React.FC = () => {
            gap: 16px;
            background: var(--bg-card);
            border: 1px solid var(--border-subtle);
-           padding: 20px;
-           border-radius: 16px;
+           padding: 32px;
+           border-radius: 20px;
            transition: transform 0.2s;
         }
         .cert-card:hover {
@@ -148,14 +148,10 @@ const CertificationsSection: React.FC = () => {
         }
 
         .cert-icon {
-           width: 48px;
-           height: 48px;
-           border-radius: 12px;
            display: flex;
            align-items: center;
            justify-content: center;
            flex-shrink: 0;
-           box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         .cert-content {
@@ -166,7 +162,7 @@ const CertificationsSection: React.FC = () => {
            font-size: 1rem;
            margin-bottom: 6px;
            line-height: 1.3;
-           color: white;
+           color: var(--text-primary);
            font-weight: 600;
         }
 
@@ -188,11 +184,11 @@ const CertificationsSection: React.FC = () => {
 
         .mini-tag {
            font-size: 0.75rem;
-           background: rgba(255,255,255,0.05);
+           background: rgba(0,0,0,0.05);
            padding: 3px 8px;
            border-radius: 6px;
            color: #94A3B8;
-           border: 1px solid rgba(255,255,255,0.05);
+           border: 1px solid rgba(0,0,0,0.05);
         }
         .more-tag {
            font-size: 0.7rem;
@@ -209,6 +205,9 @@ const CertificationsSection: React.FC = () => {
         }
         .cert-footer p { display: flex; align-items: center; gap: 8px; }
 
+        @media (max-width: 900px) {
+           .certs-grid { grid-template-columns: 1fr; }
+        }
       `}</style>
         </section>
     );

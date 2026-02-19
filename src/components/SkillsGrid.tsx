@@ -28,7 +28,7 @@ interface SkillCategoryProps {
 const SkillCategory: React.FC<SkillCategoryProps> = ({ icon: Icon, title, items, color }) => (
   <div className="skill-category-card">
     <div className="category-header">
-      <div className="icon-box" style={{ color: color, background: `${color}15` }}>
+      <div className="icon-box" style={{ color: color }}>
         <Icon size={24} />
       </div>
       <h4>{title}</h4>
@@ -128,7 +128,7 @@ const SkillsGrid: React.FC = () => {
 
         .section-title {
             font-size: 2.5rem;
-            color: white;
+            color: var(--text-primary);
             margin-bottom: 16px;
         }
         
@@ -146,7 +146,7 @@ const SkillsGrid: React.FC = () => {
         .column-title {
             font-size: 1.5rem;
             margin-bottom: 24px;
-            color: white;
+            color: var(--text-primary);
             padding-bottom: 12px;
             border-bottom: 1px solid var(--border-subtle);
         }
@@ -158,7 +158,7 @@ const SkillsGrid: React.FC = () => {
         }
 
         .skill-bars-card-inner {
-            background: rgba(255,255,255,0.02);
+            background: rgba(0,0,0,0.02);
             border: 1px solid var(--border-subtle);
             padding: 24px;
             border-radius: 20px;
@@ -180,7 +180,7 @@ const SkillsGrid: React.FC = () => {
         
         .progress-bg {
             height: 6px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.1);
             border-radius: 99px;
             overflow: hidden;
         }
@@ -199,12 +199,12 @@ const SkillsGrid: React.FC = () => {
            border: 1px solid var(--border-subtle);
            border-radius: 20px;
            padding: 24px;
-           background: rgba(255,255,255,0.02);
+           background: rgba(0,0,0,0.02);
            transition: all 0.2s;
         }
         .skill-category-card:hover {
            border-color: var(--border-highlight);
-           background: rgba(255,255,255,0.04);
+           background: var(--bg-card-hover);
         }
 
         .category-header {
@@ -215,9 +215,6 @@ const SkillsGrid: React.FC = () => {
         }
         
         .icon-box {
-           width: 44px;
-           height: 44px;
-           border-radius: 12px;
            display: flex;
            align-items: center;
            justify-content: center;
@@ -227,7 +224,7 @@ const SkillsGrid: React.FC = () => {
            font-size: 1.1rem;
            margin: 0;
            font-weight: 600;
-           color: white;
+           color: var(--text-primary);
         }
 
         .skills-tags {
@@ -239,15 +236,15 @@ const SkillsGrid: React.FC = () => {
         .skill-tag {
            font-size: 0.8rem;
            padding: 6px 12px;
-           background: rgba(255,255,255,0.05);
-           border: 1px solid rgba(255,255,255,0.05);
+           background: rgba(0,0,0,0.05);
+           border: 1px solid rgba(0,0,0,0.05);
            border-radius: 99px;
            color: var(--text-secondary);
            transition: all 0.2s;
         }
         .skill-tag:hover {
-            color: white;
-            background: rgba(255,255,255,0.1);
+            color: var(--text-primary);
+            background: rgba(0,0,0,0.1);
         }
 
         @media (max-width: 900px) {

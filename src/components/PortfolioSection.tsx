@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowUpRight, Camera, Code, Smartphone, Video, Image as ImageIcon, Layout } from 'lucide-react';
 
 interface Project {
@@ -90,59 +90,87 @@ const projects: ProjectsData = {
 };
 
 const PortfolioSection: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<'tech' | 'creative'>('tech');
-
     return (
-        <section className="container bento-card" id="portfolio">
+        <section className="container" id="portfolio" style={{ padding: '100px 0' }}>
             <div className="section-header">
                 <div>
                     <h2 className="section-title">Featured Work</h2>
                     <p className="section-subtitle">A selection of my best projects in Engineering & Creativity</p>
                 </div>
-
-                <div className="tab-switcher">
-                    <button
-                        className={`tab-btn ${activeTab === 'tech' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('tech')}
-                    >
-                        <Code size={18} /> Tech & Engineering
-                    </button>
-                    <button
-                        className={`tab-btn ${activeTab === 'creative' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('creative')}
-                    >
-                        <Camera size={18} /> Creative & Design
-                    </button>
-                </div>
             </div>
 
-            <div className="projects-grid">
-                {projects[activeTab].map((project) => (
-                    <div key={project.id} className={`project-item ${project.featured ? 'featured' : ''}`}>
-                        <div className="card-top">
-                            <div className="project-icon-box">
-                                {project.icon}
-                            </div>
-                            <a href={project.link} className="project-link">
-                                <ArrowUpRight size={20} />
-                            </a>
-                        </div>
-
-                        <div className="project-content">
-                            <div className="project-meta">
-                                <span className="project-category">{project.category}</span>
-                            </div>
-                            <h3>{project.title}</h3>
-                            <p>{project.desc}</p>
-
-                            <div className="tags-container">
-                                {project.tags.map(tag => (
-                                    <span key={tag} className="tag">{tag}</span>
-                                ))}
-                            </div>
-                        </div>
+            <div className="portfolio-content-wrapper">
+                {/* Creative Section */}
+                <div className="portfolio-group">
+                    <div className="group-header">
+                        <Camera size={20} />
+                        <h3>Creative & Design</h3>
                     </div>
-                ))}
+                    <div className="projects-grid">
+                        {projects.creative.map((project) => (
+                            <div key={project.id} className={`project-item ${project.featured ? 'featured' : ''}`}>
+                                <div className="card-top">
+                                    <div className="project-icon-box">
+                                        {project.icon}
+                                    </div>
+                                    <a href={project.link} className="project-link">
+                                        <ArrowUpRight size={20} />
+                                    </a>
+                                </div>
+
+                                <div className="project-content">
+                                    <div className="project-meta">
+                                        <span className="project-category">{project.category}</span>
+                                    </div>
+                                    <h3>{project.title}</h3>
+                                    <p>{project.desc}</p>
+
+                                    <div className="tags-container">
+                                        {project.tags.map(tag => (
+                                            <span key={tag} className="tag">{tag}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Tech Section */}
+                <div className="portfolio-group">
+                    <div className="group-header">
+                        <Code size={20} />
+                        <h3>Tech & Engineering</h3>
+                    </div>
+                    <div className="projects-grid">
+                        {projects.tech.map((project) => (
+                            <div key={project.id} className={`project-item ${project.featured ? 'featured' : ''}`}>
+                                <div className="card-top">
+                                    <div className="project-icon-box">
+                                        {project.icon}
+                                    </div>
+                                    <a href={project.link} className="project-link">
+                                        <ArrowUpRight size={20} />
+                                    </a>
+                                </div>
+
+                                <div className="project-content">
+                                    <div className="project-meta">
+                                        <span className="project-category">{project.category}</span>
+                                    </div>
+                                    <h3>{project.title}</h3>
+                                    <p>{project.desc}</p>
+
+                                    <div className="tags-container">
+                                        {project.tags.map(tag => (
+                                            <span key={tag} className="tag">{tag}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
 
             <style>{`
@@ -157,7 +185,7 @@ const PortfolioSection: React.FC = () => {
                 
                 .section-title {
                     font-size: 2.5rem;
-                    color: white;
+                    color: var(--text-primary);
                     margin-bottom: 8px;
                 }
                 .section-subtitle {
@@ -165,48 +193,45 @@ const PortfolioSection: React.FC = () => {
                     font-size: 1.1rem;
                 }
 
-                /* Dark Pill Tab Switcher */
-                .tab-switcher {
-                    background: rgba(255,255,255,0.05);
-                    padding: 6px;
-                    border-radius: 99px;
+                .portfolio-content-wrapper {
                     display: flex;
-                    gap: 0;
-                    border: 1px solid var(--border-subtle);
+                    flex-direction: column;
+                    gap: 60px;
+                    margin-top: 20px;
                 }
-                
-                .tab-btn {
-                    border: none;
-                    background: transparent;
-                    padding: 10px 24px;
-                    border-radius: 99px;
-                    font-size: 0.95rem;
-                    font-weight: 600;
-                    color: #64748B;
-                    cursor: pointer;
+
+                .portfolio-group {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 32px;
+                    background: var(--bg-card);
+                    border: 1px solid var(--border-subtle);
+                    border-radius: 32px;
+                    padding: 48px;
+                    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
+                }
+
+                .group-header {
                     display: flex;
                     align-items: center;
-                    justify-content: center;
-                    gap: 10px;
-                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    gap: 12px;
+                    color: var(--text-primary);
+                    border-bottom: 1px solid var(--border-subtle);
+                    padding-bottom: 20px;
+                    margin-bottom: 8px;
                 }
-                
-                .tab-btn:hover:not(.active) {
-                    color: white;
-                    background: rgba(255,255,255,0.05);
-                }
-                
-                .tab-btn.active {
-                    background: white; /* Contrast active state */
-                    color: black;
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+                .group-header h3 {
+                    font-size: 1.5rem;
+                    margin: 0;
                     font-weight: 700;
+                    letter-spacing: -0.02em;
                 }
                 
                 .projects-grid {
                     display: grid;
                     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-                    gap: 30px;
+                    gap: 32px;
                 }
                 
                 .project-item {
@@ -214,7 +239,7 @@ const PortfolioSection: React.FC = () => {
                     flex-direction: column;
                     gap: 24px;
                     min-height: 320px;
-                    background: rgba(255,255,255,0.02);
+                    background: rgba(0,0,0,0.02);
                     border: 1px solid var(--border-subtle);
                     border-radius: 20px;
                     padding: 24px;
@@ -222,7 +247,7 @@ const PortfolioSection: React.FC = () => {
                 }
                 .project-item:hover {
                     border-color: var(--border-highlight);
-                    background: rgba(255,255,255,0.04);
+                    background: var(--bg-card-hover);
                     transform: translateY(-4px);
                 }
                 
@@ -239,14 +264,11 @@ const PortfolioSection: React.FC = () => {
                 }
 
                 .project-icon-box {
-                    width: 56px;
-                    height: 56px;
-                    background: rgba(255,255,255,0.05);
-                    border-radius: 16px;
+                    width: auto;
+                    height: auto;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    border: 1px solid rgba(255,255,255,0.05);
                 }
                 
                 .project-link {
@@ -258,7 +280,7 @@ const PortfolioSection: React.FC = () => {
                     align-items: center;
                     justify-content: center;
                     color: #64748B;
-                    border: 1px solid rgba(255,255,255,0.1);
+                    border: 1px solid rgba(0,0,0,0.1);
                     transition: all 0.2s;
                     text-decoration: none;
                 }
@@ -272,7 +294,7 @@ const PortfolioSection: React.FC = () => {
                 .project-content h3 {
                     font-size: 1.5rem;
                     margin-bottom: 12px;
-                    color: white;
+                    color: var(--text-primary);
                     font-weight: 600;
                 }
                 
@@ -302,13 +324,13 @@ const PortfolioSection: React.FC = () => {
                 }
                 
                 .tag {
-                    background: rgba(255,255,255,0.05);
+                    background: rgba(0,0,0,0.05);
                     padding: 6px 14px;
                     border-radius: 99px;
                     font-size: 0.8rem;
                     color: #94A3B8;
                     font-weight: 500;
-                    border: 1px solid rgba(255,255,255,0.05);
+                    border: 1px solid rgba(0,0,0,0.05);
                 }
 
                 @media (max-width: 900px) {
