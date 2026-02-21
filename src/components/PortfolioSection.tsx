@@ -1,175 +1,160 @@
 import React from 'react';
-import { ArrowUpRight, Camera, Code, Smartphone, Video, Image as ImageIcon, Layout } from 'lucide-react';
+import { ArrowUpRight, Code } from 'lucide-react';
 
-interface Project {
+interface GitHubRepo {
     id: number;
-    title: string;
-    category: string;
-    desc: string;
-    tags: string[];
-    icon: React.ReactNode;
-    link: string;
-    featured?: boolean;
+    name: string;
+    description: string | null;
+    html_url: string;
+    language: string | null;
+    stargazers_count: number;
+    forks_count: number;
+    fork: boolean;
+    topics: string[];
+    updated_at: string;
 }
 
-interface ProjectsData {
-    tech: Project[];
-    creative: Project[];
-}
+const GITHUB_USERNAME = 'rofiperlungoding';
+const EXCLUDED_REPOS = ['rofidoesthings', 'rofiperlungoding', 'INTRIVIA'];
 
-const projects: ProjectsData = {
-    tech: [
-        {
-            id: 1,
-            title: "Automated Measurement Robot",
-            category: "Robotics & IoT",
-            desc: "Automated robot for SMEs with Android & Cloud Database integration. 1st Place Robotic Creative.",
-            tags: ["IoT", "Android", "Cloud", "C++"],
-            icon: <Smartphone size={24} color="#3B82F6" />,
-            link: "#",
-            featured: true
-        },
-        {
-            id: 2,
-            title: "Modern SaaS Landing Page",
-            category: "Frontend Engineering",
-            desc: "Pixel-perfect implementation of a modern fintech landing page with complex animations and responsive design.",
-            tags: ["TypeScript", "React", "Tailwind", "Framer Motion"],
-            icon: <Layout size={24} color="#6366F1" />,
-            link: "#"
-        },
-        {
-            id: 3,
-            title: "IoT AWS Integration",
-            category: "Cloud Computing",
-            desc: "AWS IoT Core implementation for device management and data monitoring.",
-            tags: ["AWS", "IoT", "Lambda", "DynamoDB"],
-            icon: <Code size={24} color="#F59E0B" />,
-            link: "#"
-        },
-        {
-            id: 4,
-            title: "AI/ML Experiments",
-            category: "AI & Data",
-            desc: "Computer vision and data analysis exploration using Python and TensorFlow.",
-            tags: ["Python", "AI", "ML", "Data"],
-            icon: <Code size={24} color="#8B5CF6" />,
-            link: "#"
-        }
-    ],
-    creative: [
-        {
-            id: 5,
-            title: "Award-Winning Short Film",
-            category: "Creative Video",
-            desc: "1st Place Provincial Creative Video Competition. Cinematic storytelling.",
-            tags: ["Directing", "Editing", "Cinematography"],
-            icon: <Video size={24} color="#EC4899" />,
-            link: "#",
-            featured: true
-        },
-        {
-            id: 6,
-            title: "Photography Portfolio",
-            category: "Photography",
-            desc: "Award-winning portrait and event photography collection.",
-            tags: ["Portrait", "Event", "Composition"],
-            icon: <ImageIcon size={24} color="#F43F5E" />,
-            link: "#"
-        },
-        {
-            id: 7,
-            title: "Event Documentation",
-            category: "Professional Service",
-            desc: "Professional documentation for school and corporate events.",
-            tags: ["Event", "Coverage", "Content"],
-            icon: <Camera size={24} color="#6366F1" />,
-            link: "#"
-        }
-    ]
+const LANGUAGE_COLORS: Record<string, string> = {
+    TypeScript: '#3178C6',
+    JavaScript: '#F7DF1E',
+    Python: '#3776AB',
+    Java: '#ED8B00',
+    'C++': '#00599C',
+    C: '#A8B9CC',
+    HTML: '#E34F26',
+    CSS: '#1572B6',
 };
 
 const PortfolioSection: React.FC = () => {
+    const [repos, setRepos] = React.useState<GitHubRepo[]>([]);
+    const [loading, setLoading] = React.useState(true);
+    const [error, setError] = React.useState<string | null>(null);
+
+    const fetchRepos = React.useCallback(async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const res = await fetch(
+                `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`
+            );
+            if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+            const data: GitHubRepo[] = await res.json();
+            const filtered = data.filter(
+                (repo) => !EXCLUDED_REPOS.includes(repo.name)
+            );
+            setRepos(filtered);
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed to load projects');
+        } finally {
+            setLoading(false);
+        }
+    }, []);
+
+    React.useEffect(() => {
+        fetchRepos();
+    }, [fetchRepos]);
+
     return (
         <section className="container" id="portfolio" style={{ padding: '100px 0' }}>
             <div className="section-header">
                 <div>
                     <h2 className="section-title">Featured Work</h2>
-                    <p className="section-subtitle">A selection of my best projects in Engineering & Creativity</p>
+                    <p className="section-subtitle">Real projects from my GitHub — built with passion</p>
                 </div>
             </div>
 
             <div className="portfolio-content-wrapper">
-                {/* Creative Section */}
-                <div className="portfolio-group">
-                    <div className="group-header">
-                        <Camera size={20} />
-                        <h3>Creative & Design</h3>
-                    </div>
-                    <div className="projects-grid">
-                        {projects.creative.map((project) => (
-                            <div key={project.id} className={`project-item ${project.featured ? 'featured' : ''}`}>
-                                <div className="card-top">
-                                    <div className="project-icon-box">
-                                        {project.icon}
-                                    </div>
-                                    <a href={project.link} className="project-link">
-                                        <ArrowUpRight size={20} />
-                                    </a>
-                                </div>
-
-                                <div className="project-content">
-                                    <div className="project-meta">
-                                        <span className="project-category">{project.category}</span>
-                                    </div>
-                                    <h3>{project.title}</h3>
-                                    <p>{project.desc}</p>
-
-                                    <div className="tags-container">
-                                        {project.tags.map(tag => (
-                                            <span key={tag} className="tag">{tag}</span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Tech Section */}
                 <div className="portfolio-group">
                     <div className="group-header">
                         <Code size={20} />
-                        <h3>Tech & Engineering</h3>
+                        <h3>Projects</h3>
                     </div>
-                    <div className="projects-grid">
-                        {projects.tech.map((project) => (
-                            <div key={project.id} className={`project-item ${project.featured ? 'featured' : ''}`}>
-                                <div className="card-top">
-                                    <div className="project-icon-box">
-                                        {project.icon}
-                                    </div>
-                                    <a href={project.link} className="project-link">
-                                        <ArrowUpRight size={20} />
-                                    </a>
-                                </div>
 
-                                <div className="project-content">
-                                    <div className="project-meta">
-                                        <span className="project-category">{project.category}</span>
-                                    </div>
-                                    <h3>{project.title}</h3>
-                                    <p>{project.desc}</p>
-
-                                    <div className="tags-container">
-                                        {project.tags.map(tag => (
-                                            <span key={tag} className="tag">{tag}</span>
-                                        ))}
+                    {loading && (
+                        <div className="projects-grid">
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <div key={i} className="project-item skeleton-card">
+                                    <div className="skeleton-line skeleton-short" />
+                                    <div className="skeleton-line skeleton-long" />
+                                    <div className="skeleton-line skeleton-medium" />
+                                    <div className="skeleton-tags">
+                                        <div className="skeleton-tag" />
+                                        <div className="skeleton-tag" />
                                     </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {error && (
+                        <div className="error-state">
+                            <p>😕 {error}</p>
+                            <button onClick={fetchRepos} className="retry-btn">
+                                Try Again
+                            </button>
+                        </div>
+                    )}
+
+                    {!loading && !error && (
+                        <div className="projects-grid">
+                            {repos.map((repo) => (
+                                <div key={repo.id} className="project-item">
+                                    <div className="card-top">
+                                        <div className="project-icon-box">
+                                            <Code
+                                                size={24}
+                                                color={
+                                                    repo.language
+                                                        ? LANGUAGE_COLORS[repo.language] || '#94A3B8'
+                                                        : '#94A3B8'
+                                                }
+                                            />
+                                        </div>
+                                        <a
+                                            href={repo.html_url}
+                                            className="project-link"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <ArrowUpRight size={20} />
+                                        </a>
+                                    </div>
+
+                                    <div className="project-content">
+                                        <div className="project-meta">
+                                            <span className="project-category">
+                                                {repo.language || 'Project'}
+                                            </span>
+                                            {repo.stargazers_count > 0 && (
+                                                <span className="star-count">
+                                                    ⭐ {repo.stargazers_count}
+                                                </span>
+                                            )}
+                                        </div>
+                                        <h3>{repo.name}</h3>
+                                        <p>
+                                            {repo.description || 'No description provided.'}
+                                        </p>
+
+                                        <div className="tags-container">
+                                            {repo.fork && (
+                                                <span className="tag collab-tag">Collaboration</span>
+                                            )}
+                                            {repo.topics.slice(0, 4).map((topic) => (
+                                                <span key={topic} className="tag">{topic}</span>
+                                            ))}
+                                            {repo.topics.length === 0 && repo.language && (
+                                                <span className="tag">{repo.language}</span>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
 
@@ -238,7 +223,7 @@ const PortfolioSection: React.FC = () => {
                     display: flex;
                     flex-direction: column;
                     gap: 24px;
-                    min-height: 320px;
+                    min-height: 280px;
                     background: rgba(0,0,0,0.02);
                     border: 1px solid var(--border-subtle);
                     border-radius: 20px;
@@ -249,12 +234,6 @@ const PortfolioSection: React.FC = () => {
                     border-color: var(--border-highlight);
                     background: var(--bg-card-hover);
                     transform: translateY(-4px);
-                }
-                
-                .project-item.featured {
-                    grid-column: span 2;
-                    background: linear-gradient(145deg, rgba(37, 99, 235, 0.05) 0%, rgba(0,0,0,0) 100%);
-                    border-color: rgba(37, 99, 235, 0.2);
                 }
                 
                 .card-top {
@@ -290,6 +269,12 @@ const PortfolioSection: React.FC = () => {
                     border-color: var(--accent-blue);
                     transform: rotate(45deg);
                 }
+
+                .project-meta {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
                 
                 .project-content h3 {
                     font-size: 1.5rem;
@@ -315,6 +300,12 @@ const PortfolioSection: React.FC = () => {
                     margin-bottom: 12px;
                     display: block;
                 }
+
+                .star-count {
+                    font-size: 0.8rem;
+                    color: var(--text-secondary);
+                    font-weight: 500;
+                }
                 
                 .tags-container {
                     display: flex;
@@ -333,10 +324,86 @@ const PortfolioSection: React.FC = () => {
                     border: 1px solid rgba(0,0,0,0.05);
                 }
 
+                .collab-tag {
+                    background: rgba(99, 102, 241, 0.1) !important;
+                    color: #6366F1 !important;
+                    border-color: rgba(99, 102, 241, 0.2) !important;
+                    font-weight: 600 !important;
+                }
+
+                /* Skeleton loading */
+                .skeleton-card {
+                    min-height: 280px !important;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                    padding: 24px;
+                }
+
+                .skeleton-line {
+                    height: 16px;
+                    background: linear-gradient(90deg, rgba(0,0,0,0.06) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.06) 75%);
+                    background-size: 200% 100%;
+                    animation: shimmer 1.5s infinite;
+                    border-radius: 8px;
+                }
+
+                .skeleton-short { width: 40%; }
+                .skeleton-medium { width: 70%; }
+                .skeleton-long { width: 90%; }
+
+                .skeleton-tags {
+                    display: flex;
+                    gap: 8px;
+                    margin-top: auto;
+                }
+
+                .skeleton-tag {
+                    width: 60px;
+                    height: 28px;
+                    background: linear-gradient(90deg, rgba(0,0,0,0.06) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.06) 75%);
+                    background-size: 200% 100%;
+                    animation: shimmer 1.5s infinite;
+                    border-radius: 99px;
+                }
+
+                @keyframes shimmer {
+                    0% { background-position: 200% 0; }
+                    100% { background-position: -200% 0; }
+                }
+
+                /* Error state */
+                .error-state {
+                    text-align: center;
+                    padding: 60px 20px;
+                    color: var(--text-secondary);
+                }
+
+                .error-state p {
+                    font-size: 1.1rem;
+                    margin-bottom: 20px;
+                }
+
+                .retry-btn {
+                    background: var(--accent-blue);
+                    color: white;
+                    border: none;
+                    padding: 10px 24px;
+                    border-radius: 99px;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: opacity 0.2s;
+                }
+
+                .retry-btn:hover {
+                    opacity: 0.85;
+                }
+
                 @media (max-width: 900px) {
-                    .project-item.featured { grid-column: span 1; }
                     .section-header { flex-direction: column; align-items: flex-start; }
-                    .tab-switcher { width: 100%; }
+                    .portfolio-group { padding: 24px; }
+                    .projects-grid { grid-template-columns: 1fr; }
                 }
             `}</style>
         </section>
