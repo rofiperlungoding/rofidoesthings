@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,8 +15,9 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Home', href: '#' },
-    { name: 'Services', href: '#services' },
     { name: 'About', href: '#about' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Portfolio', href: '#portfolio' },
   ];
 
@@ -26,7 +27,11 @@ const Navbar: React.FC = () => {
         <div className="container nav-container">
           {/* Logo */}
           <a href="#" className="logo">
-            ROFI<br />DOES<br />THINGS
+            <img
+              src={scrolled ? "/Logo RDT.png" : "/Logo RDT Full.png"}
+              alt="RDT Logo"
+              className={`logo-img ${scrolled ? 'logo-compact' : 'logo-full'}`}
+            />
           </a>
 
           {/* Desktop Nav - Centered Pills */}
@@ -43,10 +48,10 @@ const Navbar: React.FC = () => {
           {/* CTA Button */}
           <div className="nav-actions">
             <a href="mailto:rofi.darmawan@outlook.com" className="btn btn-primary nav-btn">
-              Contact Me
+              Consultation
             </a>
             <button className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
-              {isOpen ? <X color="white" /> : <Menu color="white" />}
+              {isOpen ? <X size={24} color="#000" /> : <Menu size={24} color="#000" />}
             </button>
           </div>
         </div>
@@ -65,9 +70,6 @@ const Navbar: React.FC = () => {
               {link.name}
             </a>
           ))}
-          <a href="mailto:rofi.darmawan@outlook.com" className="btn btn-primary mobile-cta">
-            Contact Me <ArrowRight size={16} style={{ marginLeft: 8 }} />
-          </a>
         </div>
       </div>
 
@@ -78,53 +80,59 @@ const Navbar: React.FC = () => {
             left: 0;
             width: 100%;
             z-index: 1000;
-            padding: 24px 0;
-            transition: all 0.3s ease;
+            padding: 32px 0;
+            transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease, backdrop-filter 0.4s ease;
+            will-change: padding;
         }
 
         .navbar.scrolled {
-            padding: 16px 0;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 12px 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
         }
 
         .nav-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            height: 48px; /* Lock height to prevent vertical jump */
         }
 
         .logo {
-            font-size: 0.8rem;
-            font-weight: 800;
-            color: white;
+            display: flex;
+            align-items: center;
             text-decoration: none;
-            line-height: 1;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+            width: 200px; /* Locked width for vertical stability */
+            flex-shrink: 0;
         }
 
-        /* Centered Pill Nav */
+        .logo-img {
+            height: 42px;
+            width: auto;
+            display: block;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo-img.logo-compact {
+            height: 36px;
+        }
+
         .nav-pill-container {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 6px 8px;
+            background: rgba(0, 0, 0, 0.03);
+            padding: 4px;
             border-radius: 99px;
-            backdrop-filter: blur(10px);
         }
 
         .nav-links {
             display: flex;
-            gap: 4px;
             list-style: none;
         }
 
         .nav-link {
-            color: #94A3B8;
+            color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.85rem;
-            font-weight: 500;
+            font-weight: 600;
             padding: 8px 20px;
             border-radius: 99px;
             transition: all 0.2s;
@@ -132,20 +140,23 @@ const Navbar: React.FC = () => {
         }
 
         .nav-link:hover {
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         .nav-actions {
             display: flex;
             align-items: center;
+            justify-content: flex-end;
             gap: 16px;
+            width: 200px; /* Symmetrical width to logo locks center pill position */
+            flex-shrink: 0;
         }
 
         .nav-btn {
             padding: 10px 24px;
             font-size: 0.85rem;
-            min-height: 40px;
         }
 
         .mobile-toggle {
@@ -155,41 +166,42 @@ const Navbar: React.FC = () => {
             cursor: pointer;
         }
 
-        /* Mobile Menu */
         .mobile-menu {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background: black;
+            background: white;
             z-index: 999;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s;
+            transition: all 0.4s ease;
+            transform: translateY(-20px);
         }
 
         .mobile-menu.open {
             opacity: 1;
             pointer-events: all;
+            transform: translateY(0);
         }
 
         .mobile-links {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 32px;
+            gap: 24px;
         }
 
         .mobile-link {
-            color: white;
-            font-size: 2rem;
-            font-weight: 800;
+            color: var(--text-primary);
+            font-size: 2.5rem;
+            font-weight: 700;
             text-decoration: none;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.04em;
         }
         
         @media (max-width: 900px) {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, Code } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface GitHubRepo {
     id: number;
@@ -67,111 +68,149 @@ const PortfolioSection: React.FC = () => {
             </div>
 
             <div className="portfolio-content-wrapper">
-                <div className="portfolio-group">
+                {!loading && (
                     <div className="group-header">
                         <Code size={20} />
-                        <h3>Projects</h3>
+                        <h3>Open Source Architecture</h3>
                     </div>
+                )}
 
-                    {loading && (
-                        <div className="projects-grid">
-                            {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <div key={i} className="project-item skeleton-card">
-                                    <div className="skeleton-line skeleton-short" />
-                                    <div className="skeleton-line skeleton-long" />
-                                    <div className="skeleton-line skeleton-medium" />
-                                    <div className="skeleton-tags">
-                                        <div className="skeleton-tag" />
-                                        <div className="skeleton-tag" />
-                                    </div>
+                {loading && (
+                    <div className="portfolio-mosaic">
+                        {[1, 2, 3, 4, 5, 6].map((i) => (
+                            <div key={i} className="bento-card project-item skeleton-card">
+                                <div className="skeleton-line skeleton-short" />
+                                <div className="skeleton-line skeleton-long" />
+                                <div className="skeleton-line skeleton-medium" />
+                                <div className="skeleton-tags">
+                                    <div className="skeleton-tag" />
+                                    <div className="skeleton-tag" />
                                 </div>
-                            ))}
-                        </div>
-                    )}
+                            </div>
+                        ))}
+                    </div>
+                )}
 
-                    {error && (
-                        <div className="error-state">
-                            <p>😕 {error}</p>
-                            <button onClick={fetchRepos} className="retry-btn">
-                                Try Again
-                            </button>
-                        </div>
-                    )}
+                {error && (
+                    <div className="error-state">
+                        <p>😕 {error}</p>
+                        <button onClick={fetchRepos} className="retry-btn">
+                            Try Again
+                        </button>
+                    </div>
+                )}
 
-                    {!loading && !error && (
-                        <div className="projects-grid">
-                            {repos.map((repo) => (
-                                <div key={repo.id} className="project-item">
-                                    <div className="card-top">
-                                        <div className="project-icon-box">
-                                            <Code
-                                                size={24}
-                                                color={
-                                                    repo.language
-                                                        ? LANGUAGE_COLORS[repo.language] || '#94A3B8'
-                                                        : '#94A3B8'
-                                                }
-                                            />
+                {!loading && !error && (
+                    <div className="portfolio-mosaic">
+                        {[...repos]
+                            .sort((a, b) => {
+                                const flagships = ['catcoder', 'clouddesk', 'setutor'];
+                                const aIdx = flagships.indexOf(a.name.toLowerCase());
+                                const bIdx = flagships.indexOf(b.name.toLowerCase());
+                                if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
+                                if (aIdx !== -1) return -1;
+                                if (bIdx !== -1) return 1;
+                                return 0;
+                            })
+                            .map((repo) => {
+                                const name = repo.name.toLowerCase();
+                                const isHero = name.includes('catcoder');
+                                const isFeatured = name.includes('clouddesk');
+                                const isSeTutor = name.includes('setutor');
+
+                                let gridClass = 'mosaic-standard';
+                                let schematicClass = '';
+                                let systemId = '';
+
+                                if (isHero) {
+                                    gridClass = 'mosaic-hero';
+                                    schematicClass = 'schematic-catcoder';
+                                    systemId = '[ FLAGSHIP_SYSTEM_01 ]';
+                                } else if (isFeatured) {
+                                    gridClass = 'mosaic-featured';
+                                    schematicClass = 'schematic-clouddesk';
+                                    systemId = '[ ARCHITECTED_SYSTEM_02 ]';
+                                } else if (isSeTutor) {
+                                    gridClass = 'mosaic-standard'; // SeTutor is Tier 2 in Row 2, but spans 1
+                                    schematicClass = 'schematic-setutor';
+                                    systemId = '[ SPECIALTY_SYSTEM_03 ]';
+                                }
+
+                                return (
+                                    <Link
+                                        key={repo.id}
+                                        to={`/project/${repo.name}`}
+                                        className={`bento-card project-item ${gridClass} ${schematicClass} project-detail-anchor`}
+                                    >
+                                        {systemId && <span className="system-id">{systemId}</span>}
+                                        <div className="card-top">
+                                            <div className="project-icon-box">
+                                                <Code
+                                                    size={24}
+                                                    color={
+                                                        repo.language
+                                                            ? LANGUAGE_COLORS[repo.language] || '#94A3B8'
+                                                            : '#94A3B8'
+                                                    }
+                                                />
+                                            </div>
+                                            <div
+                                                className="project-link"
+                                            >
+                                                <ArrowUpRight size={20} />
+                                            </div>
                                         </div>
-                                        <a
-                                            href={repo.html_url}
-                                            className="project-link"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            <ArrowUpRight size={20} />
-                                        </a>
-                                    </div>
 
-                                    <div className="project-content">
-                                        <div className="project-meta">
-                                            <span className="project-category">
-                                                {repo.language || 'Project'}
-                                            </span>
-                                            {repo.stargazers_count > 0 && (
-                                                <span className="star-count">
-                                                    ⭐ {repo.stargazers_count}
+                                        <div className="project-content">
+                                            <div className="project-meta">
+                                                <span className="project-category">
+                                                    {repo.language || 'Project'}
                                                 </span>
-                                            )}
-                                        </div>
-                                        <h3>{repo.name}</h3>
-                                        <p>
-                                            {repo.description || 'No description provided.'}
-                                        </p>
+                                                {repo.stargazers_count > 0 && (
+                                                    <span className="star-count">
+                                                        <span className="stat-num" style={{ fontSize: '1rem', marginRight: '4px' }}>
+                                                            {repo.stargazers_count}
+                                                        </span>
+                                                        Stars
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <h3>{repo.name}</h3>
+                                            <p>
+                                                {isHero ? "Flagship gamified learning infrastructure designed to bridge the gap between theory and execution. Implementation of complex logic cycles, progress tracking, and reward systems." :
+                                                    isFeatured ? "Enterprise-grade cloud management system with real-time monitoring, automated scaling architectures, and high-availability node distribution." :
+                                                        isSeTutor ? "Intelligent educational brokering platform optimizing knowledge transfer through automated scheduling and performance analytics." :
+                                                            repo.description || `System Architecture Evaluation: ${repo.language || 'Software'} based development | Focused on modular systems.`}
+                                            </p>
 
-                                        <div className="tags-container">
-                                            {repo.fork && (
-                                                <span className="tag collab-tag">Collaboration</span>
-                                            )}
-                                            {repo.topics.slice(0, 4).map((topic) => (
-                                                <span key={topic} className="tag">{topic}</span>
-                                            ))}
-                                            {repo.topics.length === 0 && repo.language && (
-                                                <span className="tag">{repo.language}</span>
-                                            )}
+                                            <div className="tags-container">
+                                                {repo.fork && (
+                                                    <span className="tag collab-tag" data-lang="collaboration">Collaboration</span>
+                                                )}
+                                                {repo.topics.slice(0, (isHero || isFeatured) ? 6 : 4).map((topic) => (
+                                                    <span key={topic} className="tag" data-lang={topic.toLowerCase()}>{topic}</span>
+                                                ))}
+                                                {repo.topics.length === 0 && repo.language && (
+                                                    <span className="tag" data-lang={repo.language.toLowerCase()}>{repo.language}</span>
+                                                )}
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
+                                    </Link>
+                                );
+                            })}
+                    </div>
+                )}
             </div>
 
             <style>{`
                 .section-header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: flex-end;
                     margin-bottom: 50px;
-                    flex-wrap: wrap;
-                    gap: 30px;
                 }
                 
                 .section-title {
                     font-size: 2.5rem;
                     color: var(--text-primary);
-                    margin-bottom: 8px;
+                    margin-bottom: 12px;
                 }
                 .section-subtitle {
                     color: var(--text-secondary);
@@ -181,19 +220,7 @@ const PortfolioSection: React.FC = () => {
                 .portfolio-content-wrapper {
                     display: flex;
                     flex-direction: column;
-                    gap: 60px;
-                    margin-top: 20px;
-                }
-
-                .portfolio-group {
-                    display: flex;
-                    flex-direction: column;
                     gap: 32px;
-                    background: var(--bg-card);
-                    border: 1px solid var(--border-subtle);
-                    border-radius: 32px;
-                    padding: 48px;
-                    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
                 }
 
                 .group-header {
@@ -201,9 +228,7 @@ const PortfolioSection: React.FC = () => {
                     align-items: center;
                     gap: 12px;
                     color: var(--text-primary);
-                    border-bottom: 1px solid var(--border-subtle);
                     padding-bottom: 20px;
-                    margin-bottom: 8px;
                 }
 
                 .group-header h3 {
@@ -213,27 +238,29 @@ const PortfolioSection: React.FC = () => {
                     letter-spacing: -0.02em;
                 }
                 
-                .projects-grid {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-                    gap: 32px;
-                }
-                
                 .project-item {
                     display: flex;
                     flex-direction: column;
                     gap: 24px;
                     min-height: 280px;
-                    background: rgba(0,0,0,0.02);
-                    border: 1px solid var(--border-subtle);
-                    border-radius: 20px;
-                    padding: 24px;
-                    transition: all 0.2s;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 }
-                .project-item:hover {
-                    border-color: var(--border-highlight);
-                    background: var(--bg-card-hover);
-                    transform: translateY(-4px);
+
+                .project-item.mosaic-hero,
+                .project-item.mosaic-featured {
+                    padding: 40px;
+                }
+
+                .project-detail-anchor {
+                    text-decoration: none;
+                    cursor: pointer;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 24px;
+                }
+
+                .project-detail-anchor h3 {
+                    color: var(--text-primary);
                 }
                 
                 .card-top {
@@ -243,8 +270,10 @@ const PortfolioSection: React.FC = () => {
                 }
 
                 .project-icon-box {
-                    width: auto;
-                    height: auto;
+                    width: 48px;
+                    height: 48px;
+                    background: rgba(0,0,0,0.03);
+                    border-radius: 12px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -274,13 +303,14 @@ const PortfolioSection: React.FC = () => {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
+                    margin-bottom: 16px;
                 }
                 
                 .project-content h3 {
                     font-size: 1.5rem;
                     margin-bottom: 12px;
                     color: var(--text-primary);
-                    font-weight: 600;
+                    font-weight: 700;
                 }
                 
                 .project-content p {
@@ -288,7 +318,7 @@ const PortfolioSection: React.FC = () => {
                     line-height: 1.6;
                     margin-bottom: 24px;
                     flex-grow: 1;
-                    font-size: 0.95rem;
+                    font-size: 1rem;
                 }
                 
                 .project-category {
@@ -297,13 +327,13 @@ const PortfolioSection: React.FC = () => {
                     color: var(--accent-blue);
                     text-transform: uppercase;
                     letter-spacing: 1px;
-                    margin-bottom: 12px;
-                    display: block;
                 }
 
                 .star-count {
-                    font-size: 0.8rem;
-                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    color: #64748B;
+                    display: flex;
+                    align-items: center;
                     font-weight: 500;
                 }
                 
@@ -314,20 +344,49 @@ const PortfolioSection: React.FC = () => {
                     margin-top: auto;
                 }
                 
-                .tag {
-                    background: rgba(0,0,0,0.05);
+                 .tag {
+                    background: #F8FAFC;
                     padding: 6px 14px;
                     border-radius: 99px;
-                    font-size: 0.8rem;
-                    color: #94A3B8;
-                    font-weight: 500;
-                    border: 1px solid rgba(0,0,0,0.05);
+                    font-size: 0.75rem;
+                    color: #475569;
+                    font-weight: 600;
+                    border: 1px solid #E2E8F0;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    transition: all 0.2s ease;
+                }
+
+                .tag::before {
+                    content: '';
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 50%;
+                    background: #94A3B8;
+                }
+
+                /* Language Specific Dots */
+                .tag[data-lang="typescript"]::before { background: #3178C6; }
+                .tag[data-lang="javascript"]::before { background: #F7DF1E; }
+                .tag[data-lang="react"]::before { background: #61DAFB; }
+                .tag[data-lang="nextjs"]::before { background: #000000; }
+                .tag[data-lang="nodejs"]::before { background: #339933; }
+                .tag[data-lang="python"]::before { background: #3776AB; }
+                .tag[data-lang="css"]::before { background: #1572B6; }
+                .tag[data-lang="html"]::before { background: #E34F26; }
+                .tag[data-lang="collaboration"]::before { background: #2563EB; }
+
+                .tag:hover {
+                    border-color: #CBD5E1;
+                    background: #F1F5F9;
+                    transform: scale(1.05);
                 }
 
                 .collab-tag {
-                    background: rgba(99, 102, 241, 0.1) !important;
-                    color: #6366F1 !important;
-                    border-color: rgba(99, 102, 241, 0.2) !important;
+                    background: rgba(37, 99, 235, 0.05) !important;
+                    color: #2563EB !important;
+                    border-color: rgba(37, 99, 235, 0.1) !important;
                     font-weight: 600 !important;
                 }
 
@@ -337,12 +396,11 @@ const PortfolioSection: React.FC = () => {
                     display: flex;
                     flex-direction: column;
                     gap: 16px;
-                    padding: 24px;
                 }
 
                 .skeleton-line {
                     height: 16px;
-                    background: linear-gradient(90deg, rgba(0,0,0,0.06) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.06) 75%);
+                    background: linear-gradient(90deg, rgba(0,0,0,0.04) 25%, rgba(0,0,0,0.08) 50%, rgba(0,0,0,0.04) 75%);
                     background-size: 200% 100%;
                     animation: shimmer 1.5s infinite;
                     border-radius: 8px;
@@ -361,7 +419,7 @@ const PortfolioSection: React.FC = () => {
                 .skeleton-tag {
                     width: 60px;
                     height: 28px;
-                    background: linear-gradient(90deg, rgba(0,0,0,0.06) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.06) 75%);
+                    background: linear-gradient(90deg, rgba(0,0,0,0.04) 25%, rgba(0,0,0,0.08) 50%, rgba(0,0,0,0.04) 75%);
                     background-size: 200% 100%;
                     animation: shimmer 1.5s infinite;
                     border-radius: 99px;
@@ -396,16 +454,12 @@ const PortfolioSection: React.FC = () => {
                     transition: opacity 0.2s;
                 }
 
-                .retry-btn:hover {
-                    opacity: 0.85;
-                }
-
                 @media (max-width: 900px) {
-                    .section-header { flex-direction: column; align-items: flex-start; }
-                    .portfolio-group { padding: 24px; }
-                    .projects-grid { grid-template-columns: 1fr; }
+                    .portfolio-mosaic { grid-template-columns: 1fr; }
+                    .project-item.mosaic-featured { padding: 24px; }
                 }
             `}</style>
+
         </section>
     );
 };

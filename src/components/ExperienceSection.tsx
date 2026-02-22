@@ -1,189 +1,177 @@
 import React from 'react';
-import { Briefcase, Calendar, MapPin } from 'lucide-react';
-
-interface ExperienceItemProps {
-    role: string;
-    company: string;
-    duration: string;
-    location: string;
-    duties: string[];
-}
-
-const ExperienceItem: React.FC<ExperienceItemProps> = ({ role, company, duration, location, duties }) => (
-    <div className="experience-item">
-        <div className="exp-header">
-            <div className="exp-role-company">
-                <h4>{role}</h4>
-                <span className="company-name">{company}</span>
-            </div>
-            <div className="exp-meta">
-                <div className="meta-row"><Calendar size={14} /> {duration}</div>
-                <div className="meta-row"><MapPin size={14} /> {location}</div>
-            </div>
-        </div>
-        <ul className="exp-duties">
-            {duties.map((duty: string, idx: number) => (
-                <li key={idx}>{duty}</li>
-            ))}
-        </ul>
-    </div>
-);
+import { Briefcase } from 'lucide-react';
 
 const ExperienceSection: React.FC = () => {
     return (
-        <section className="container bento-card" id="experience">
-            <div className="section-header-left">
+        <section className="container" id="experience" style={{ padding: '100px 0' }}>
+            <div className="section-header-left" style={{ marginBottom: '60px' }}>
                 <div className="icon-title">
                     <Briefcase size={28} color="#4F46E5" />
-                    <h2>Professional Experience</h2>
+                    <h2>Engineering & Strategy</h2>
                 </div>
-                <p>Building real-world skills through hands-on work in fast-paced environments.</p>
+                <p>Deploying technical solutions in professional environments.</p>
             </div>
 
-            <div className="experience-grid">
+            <div className="experience-mosaic">
+                {/* Main Experience: Most Recent */}
+                <div className="bento-card mosaic-featured-role">
+                    <div className="role-chip">Recent</div>
+                    <div className="role-header">
+                        <div>
+                            <h4>Promotions Intern</h4>
+                            <span className="company-name">Suhud Adiyanto</span>
+                        </div>
+                        <div className="role-period">July 2025</div>
+                    </div>
+                    <ul className="role-achievements">
+                        <li>Coordinated complex logistics for technical promotional events.</li>
+                        <li>Built marketing assets using multi-media technical workflows.</li>
+                        <li>Optimized event operations through collaborative strategy.</li>
+                    </ul>
+                </div>
 
-                <ExperienceItem
-                    role="Promotions Intern"
-                    company="Suhud Adiyanto"
-                    duration="July 2025"
-                    location="South Jakarta, Jakarta"
-                    duties={[
-                        "Coordinated logistics for promotional events and managed inventory.",
-                        "Collaborated with sales team to develop promotional activities.",
-                        "Contributed to video/photo shoots for marketing materials."
-                    ]}
-                />
+                {/* Staggered Pods */}
+                <div className="bento-card mosaic-standard-role">
+                    <div className="role-header">
+                        <h4>Documentation Officer</h4>
+                        <div className="role-period">2023 - 2024</div>
+                    </div>
+                    <span className="company-name">MA Pembangunan Jakarta</span>
+                </div>
 
-                <ExperienceItem
-                    role="Event Documentation Officer"
-                    company="MA Pembangunan Jakarta"
-                    duration="Sep 2023 - Mar 2024"
-                    location="South Tangerang, Banten"
-                    duties={[
-                        "Created comprehensive internal process documentation.",
-                        "Conducted regular audits to ensure documentation compliance.",
-                        "Collaborated with teams to gather info for project docs."
-                    ]}
-                />
-
-                <ExperienceItem
-                    role="Event Documentation Trainee"
-                    company="MA Pembangunan Jakarta"
-                    duration="Sep 2022 - Apr 2023"
-                    location="South Tangerang, Banten"
-                    duties={[
-                        "Engaged guests and managed registration desk.",
-                        "Collaborated with team for seamless event operations.",
-                        "Reviewed and updated event documentation."
-                    ]}
-                />
+                <div className="bento-card mosaic-standard-role">
+                    <div className="role-header">
+                        <h4>Documentation Trainee</h4>
+                        <div className="role-period">2022 - 2023</div>
+                    </div>
+                    <span className="company-name">MA Pembangunan Jakarta</span>
+                </div>
             </div>
 
             <style>{`
-         .section-header-left {
-            margin-bottom: 40px;
-         }
+                .experience-mosaic {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 24px;
+                }
 
-         .icon-title {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 12px;
-         }
-         .icon-title h2 { margin: 0; font-size: 2rem; color: var(--text-primary); }
-         .section-header-left p { color: var(--text-secondary); }
+                .mosaic-featured-role {
+                    grid-column: span 2;
+                    grid-row: span 2;
+                    padding: 40px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 24px;
+                    position: relative;
+                }
 
-         .experience-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 20px;
-         }
+                .role-chip {
+                    position: absolute;
+                    top: 24px;
+                    right: 24px;
+                    background: var(--accent-blue);
+                    color: white;
+                    padding: 4px 12px;
+                    border-radius: 99px;
+                    font-size: 0.75rem;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
+                }
 
-         .experience-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 20px;
-            padding: 32px;
-            transition: all 0.2s;
-         }
-         
-         .experience-item:hover {
-            border-color: var(--border-highlight);
-            background: var(--bg-card-hover);
-            transform: translateY(-4px);
-         }
+                .role-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    width: 100%;
+                }
 
-         .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 12px;
-            border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 16px;
-         }
+                .role-header h4 {
+                    font-size: 1.5rem;
+                    margin: 0;
+                    color: var(--text-primary);
+                    font-weight: 700;
+                }
 
-         .exp-role-company h4 {
-            font-size: 1.3rem;
-            margin-bottom: 4px;
-            color: var(--text-primary);
-            font-weight: 600;
-         }
-         
-         .company-name {
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--accent-blue);
-         }
+                .company-name {
+                    color: var(--accent-blue);
+                    font-weight: 600;
+                    font-size: 1rem;
+                }
 
-         .exp-meta {
-            text-align: right;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            background: rgba(0,0,0,0.03);
-            padding: 8px 12px;
-            border-radius: 8px;
-         }
-         .meta-row {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 8px;
-            margin-bottom: 4px;
-         }
-         .meta-row:last-child { margin-bottom: 0; }
+                .role-period {
+                    font-size: 0.9rem;
+                    color: var(--text-secondary);
+                    font-weight: 500;
+                    background: rgba(0,0,0,0.03);
+                    padding: 6px 12px;
+                    border-radius: 8px;
+                }
 
-         .exp-duties {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-         }
-         .exp-duties li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 8px;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-         }
-         .exp-duties li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: #4F46E5;
-            font-size: 1.2rem;
-            line-height: 1;
-         }
+                .role-achievements {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+                }
 
-         @media (max-width: 900px) {
-            .experience-grid { grid-template-columns: 1fr; }
-            .exp-header { flex-direction: column; align-items: flex-start; }
-            .exp-meta { text-align: left; margin-top: 8px; width: 100%; justify-content: flex-start; }
-            .meta-row { justify-content: flex-start; }
-         }
-       `}</style>
+                .role-achievements li {
+                    position: relative;
+                    padding-left: 24px;
+                    color: var(--text-secondary);
+                    line-height: 1.6;
+                }
+
+                .role-achievements li::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    top: 10px;
+                    width: 6px;
+                    height: 6px;
+                    background: var(--accent-blue);
+                    border-radius: 50%;
+                }
+
+                .mosaic-standard-role {
+                    padding: 32px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    min-height: 180px;
+                }
+
+                .mosaic-standard-role h4 {
+                    font-size: 1.1rem;
+                    margin: 0 0 8px 0;
+                    color: var(--text-primary);
+                }
+
+                .icon-title {
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                }
+
+                .icon-title h2 {
+                    margin: 0;
+                    font-size: 2.5rem;
+                    font-weight: 700;
+                    color: var(--text-primary);
+                }
+
+                @media (max-width: 1100px) {
+                    .experience-mosaic { grid-template-columns: 1fr 1fr; }
+                    .mosaic-featured-role { grid-column: span 2; }
+                }
+
+                @media (max-width: 768px) {
+                    .experience-mosaic { grid-template-columns: 1fr; }
+                    .mosaic-featured-role { grid-column: span 1; padding: 30px; }
+                }
+            `}</style>
         </section>
     );
 };

@@ -47,22 +47,10 @@ const Hero: React.FC = () => {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #FFFFFF;
             padding: 0 24px;
             position: relative;
         }
 
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(120% 120% at 50% 120%, transparent 40%, rgba(37, 99, 235, 0.1) 80%, rgba(37, 99, 235, 0.15) 100%);
-            pointer-events: none;
-            z-index: 1;
-        }
         
         .hero-container {
             display: flex;
@@ -83,12 +71,14 @@ const Hero: React.FC = () => {
         }
 
         .hero-title {
-            font-size: 5rem;
-            line-height: 1.05;
-            margin-bottom: 24px;
-            font-weight: 700;
-            letter-spacing: -0.04em;
+            font-size: 6rem;
+            font-size: 5.5rem; /* Adjusted from 6rem */
+            line-height: 0.95;
+            margin-bottom: 32px;
+            font-weight: 700; /* Adjusted from 800 */
+            letter-spacing: -0.03em; /* Adjusted from -0.04em */
             color: #000000;
+            max-width: 700px;
         }
 
         .accent-text {

@@ -74,20 +74,20 @@ body {
 
   /* Combined: Soft Blue Glow + Technical Grid */
   background-image:
-    /* The Faded Blue Shadow (Glow) */
-    radial-gradient(circle at 0% 1000px, rgba(37, 99, 235, 0.15), transparent 600px),
-    radial-gradient(circle at 100% 1000px, rgba(37, 99, 235, 0.15), transparent 600px),
-    /* The Grid Lines */
-    linear-gradient(to right, rgba(37, 99, 235, 0.4) 1.5px, transparent 1.5px),
-    linear-gradient(to bottom, rgba(37, 99, 235, 0.4) 1.5px, transparent 1.5px);
+    /* The Faded Blue Shadow (Glow) - Softened */
+    radial-gradient(circle at 0% 100vh, rgba(37, 99, 235, 0.1), transparent 800px),
+    radial-gradient(circle at 100% 100vh, rgba(37, 99, 235, 0.1), transparent 800px),
+    /* The Grid Lines - Fainter for seamless feel */
+    linear-gradient(to right, rgba(37, 99, 235, 0.2) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(37, 99, 235, 0.2) 1.5px, transparent 1.5px);
   background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
   background-repeat: no-repeat, no-repeat, repeat, repeat;
 
-  /* Vertical Focus: SUPER SMOOTH fade-in from top, peak at 1000px */
+  /* INTERSECTED MASK: Fade-in + Side-only framing */
   mask-image:
-    linear-gradient(to bottom, transparent 0px, rgba(0, 0, 0, 0.1) 300px, black 1000px, black 1500px, rgba(0, 0, 0, 0.1) 2500px, transparent 100%),
+    linear-gradient(to bottom, transparent 0vh, transparent 70vh, rgba(0, 0, 0, 0.1) 85vh, black 105vh, black 100%),
     linear-gradient(to right, black 0%, transparent 20%, transparent 80%, black 100%);
-  -webkit-mask-composite: source-in;
+  -webkit-mask-composite: source-in, source-in;
   mask-composite: intersect;
 }
 
@@ -170,6 +170,40 @@ body::after {
   padding: 0 40px;
 }
 
+/* Mosaic Grid System */
+.mosaic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.mosaic-span-2 {
+  grid-column: span 2;
+}
+
+.mosaic-span-3 {
+  grid-column: span 3;
+}
+
+.stat-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+h3,
+h4 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
 .text-gradient-blue {
   background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
   /* Darker gradient for white bg */
@@ -222,18 +256,239 @@ body::after {
 
 /* Bento/Card Base Styles for Reuse */
 .bento-card {
-  background: var(--bg-card);
+  background-color: #FFFFFF !important;
   border: 1px solid var(--border-subtle);
   border-radius: 24px;
   padding: 32px;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  z-index: 10;
 }
 
 .bento-card:hover {
   border-color: var(--border-highlight);
-  box-shadow: 0 0 40px -10px var(--accent-glow);
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.08);
+}
+
+/* THE GHOST SCHEMATIC: Subtle technical background pattern */
+.mosaic-featured::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+  pointer-events: none;
+  background-image:
+    /* Circles for focal points */
+    radial-gradient(circle at 15% 15%, var(--accent-blue) 1px, transparent 1px),
+    radial-gradient(circle at 85% 85%, var(--accent-blue) 1px, transparent 1px),
+    /* Faint grid lines */
+    linear-gradient(to right, rgba(37, 99, 235, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(37, 99, 235, 0.1) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px;
+  z-index: 0;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mosaic-featured:hover::after {
+  opacity: 0.12;
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+}
+
+.about-mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 24px;
+  width: 100%;
+}
+
+.portfolio-mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .portfolio-mosaic {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mosaic-hero {
+    grid-column: span 2 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-mosaic {
+    grid-template-columns: 1fr;
+  }
+
+  .mosaic-hero,
+  .mosaic-featured {
+    grid-column: span 1 !important;
+    min-height: auto !important;
+  }
+}
+
+.mosaic-main {
+  grid-column: span 2;
+}
+
+.mosaic-hero {
+  grid-column: span 3;
+  min-height: 480px;
+  background-image: linear-gradient(145deg, #F8FAFF 0%, #FFFFFF 100%) !important;
+  border-color: rgba(37, 99, 235, 0.3) !important;
+}
+
+.mosaic-featured {
+  grid-column: span 2;
+  /* Use Image only to preserve the #FFFFFF background-color shield */
+  background-image: linear-gradient(145deg, #F8FAFF 0%, #FFFFFF 100%) !important;
+  border-color: rgba(37, 99, 235, 0.2) !important;
+  min-height: 400px;
+}
+
+/* DOMAIN SCHEMATICS */
+
+/* CatCoder: Gamification Loop */
+.schematic-catcoder::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.06;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 20% 20%, var(--accent-blue) 2px, transparent 2px),
+    radial-gradient(circle at 50% 50%, var(--accent-blue) 2px, transparent 2px),
+    radial-gradient(circle at 80% 20%, var(--accent-blue) 2px, transparent 2px),
+    linear-gradient(45deg, transparent 48%, var(--accent-blue) 48%, var(--accent-blue) 52%, transparent 52%);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 60px 60px;
+  z-index: 0;
+}
+
+/* CloudDesk: Network Nodes */
+.schematic-clouddesk::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 50% 50%, var(--accent-blue) 0%, transparent 60%),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 30px, rgba(37, 99, 235, 0.1) 31px, transparent 32px);
+  z-index: 0;
+}
+
+/* SeTutor: Knowledge Tree */
+.schematic-setutor::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to top, var(--accent-blue) 1px, transparent 1px),
+    linear-gradient(45deg, transparent 49%, var(--accent-blue) 50%, transparent 51%),
+    linear-gradient(-45deg, transparent 49%, var(--accent-blue) 50%, transparent 51%);
+  background-size: 100% 40%, 40px 40px, 40px 40px;
+  z-index: 0;
+}
+
+.system-id {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--accent-blue);
+  opacity: 0.6;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.mosaic-sidebar {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.mosaic-metric {
+  grid-column: span 1;
+}
+
+@keyframes icon-pulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px var(--accent-glow));
+  }
+
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px var(--accent-glow));
+  }
+
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px var(--accent-glow));
+  }
+}
+
+.focus-icon-animate {
+  animation: icon-pulse 3s infinite ease-in-out;
+}
+
+.metric-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px !important;
+}
+
+@media (max-width: 1100px) {
+  .about-mosaic {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mosaic-main {
+    grid-column: span 2;
+  }
+
+  .mosaic-sidebar {
+    grid-column: span 2;
+    grid-row: auto;
+    order: 3;
+  }
+
+  .mosaic-metric {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-mosaic {
+    grid-template-columns: 1fr;
+  }
+
+  .mosaic-main,
+  .mosaic-sidebar,
+  .mosaic-metric {
+    grid-column: span 1;
+  }
 }
 
 section {

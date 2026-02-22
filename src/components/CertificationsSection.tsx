@@ -10,22 +10,21 @@ interface CertCardProps {
 }
 
 const CertCard: React.FC<CertCardProps> = ({ title, issuer, date, skills, color }) => (
-    <div className="cert-card">
-        <div className="cert-icon">
-            <Award size={24} color={color} />
+    <div className="bento-card cert-item">
+        <div className="cert-badge-icon" style={{ background: `${color}10` }}>
+            <Award size={22} color={color} />
         </div>
-        <div className="cert-content">
+        <div className="cert-info">
             <h4>{title}</h4>
-            <div className="cert-meta">
-                <span>{issuer}</span>
-                <span className="dot-separator">•</span>
-                <span>{date}</span>
+            <div className="cert-meta-row">
+                <span className="issuer">{issuer}</span>
+                <span className="dot">•</span>
+                <span className="year">{date}</span>
             </div>
-            <div className="cert-skills">
-                {skills.slice(0, 3).map((skill: string, idx: number) => (
-                    <span key={idx} className="mini-tag">{skill}</span>
+            <div className="cert-tag-cloud">
+                {skills.slice(0, 3).map((skill, idx) => (
+                    <span key={idx} className="cert-mini-tag">{skill}</span>
                 ))}
-                {skills.length > 3 && <span className="more-tag">+{skills.length - 3}</span>}
             </div>
         </div>
     </div>
@@ -39,176 +38,152 @@ const CertificationsSection: React.FC = () => {
     const metaColor = "#1877F2";
 
     return (
-        <section className="container bento-card" id="certifications">
-            <div className="section-header-left">
-                <h2>📜 Professional Certifications</h2>
-                <p>Validating expertise through 15+ international certifications.</p>
+        <section className="container" id="certifications" style={{ padding: '100px 0' }}>
+            <div className="section-header-left" style={{ marginBottom: '60px' }}>
+                <div className="icon-title">
+                    <Award size={28} color="#2563EB" />
+                    <h2>Knowledge Benchmarks</h2>
+                </div>
+                <p>Validating expertise through professional certification programs.</p>
             </div>
 
-            <div className="certs-grid">
-                {/* Frontend */}
+            <div className="cert-mosaic">
+                {/* Meta Frontend */}
                 <CertCard
                     title="Meta Frontend Developer"
                     issuer="Meta"
                     date="2024"
-                    skills={["React", "Advanced JS", "UX/UI"]}
+                    skills={["React", "Testing"]}
                     color={metaColor}
                 />
                 {/* Cloud */}
                 <CertCard
                     title="Architecting on AWS"
-                    issuer="Amazon Web Services"
+                    issuer="AWS"
                     date="2024"
-                    skills={["EC2", "S3", "RDS", "VPC", "Serverless"]}
+                    skills={["S3", "Lambda"]}
                     color={awsColor}
                 />
                 <CertCard
-                    title="Basic Cloud and Gen AI"
-                    issuer="Amazon Web Services"
+                    title="Deep Learning / Gen AI"
+                    issuer="AWS"
                     date="2024"
-                    skills={["Cloud Fundamentals", "Gen AI", "AWS Services"]}
+                    skills={["NLP", "Bedrock"]}
                     color={awsColor}
                 />
-
-                {/* Azure / AI */}
                 <CertCard
-                    title="Azure AI Fundamentals (AI-900)"
+                    title="Azure AI - (AI-900)"
                     issuer="Microsoft"
                     date="2024"
-                    skills={["Machine Learning", "Computer Vision", "NLP"]}
+                    skills={["Cognitive", "ML"]}
                     color={azureColor}
                 />
-
-                {/* Programming */}
                 <CertCard
-                    title="Basic Programming (Python)"
-                    issuer="Dicoding / Other"
+                    title="Python Mastery"
+                    issuer="Dicoding"
                     date="2023"
-                    skills={["Python Syntax", "OOP", "Data Structures"]}
+                    skills={["OOP", "Algorithms"]}
                     color={devColor}
                 />
                 <CertCard
-                    title="Basic Programming (C)"
-                    issuer="Dicoding / Other"
+                    title="Full-stack Backend"
+                    issuer="Dicoding"
                     date="2023"
-                    skills={["Memory Management", "Pointers", "Low-level Logic"]}
+                    skills={["Node.js", "DB"]}
                     color={devColor}
-                />
-                <CertCard
-                    title="Backend with Javascript"
-                    issuer="Dicoding / Other"
-                    date="2023"
-                    skills={["Node.js", "API Design", "Database"]}
-                    color={devColor}
-                />
-                <CertCard
-                    title="Microsoft Office Specialist"
-                    issuer="Microsoft"
-                    date="2023"
-                    skills={["Word", "Excel", "PowerPoint"]}
-                    color="#EA4335" // Office red
                 />
             </div>
 
-            <div className="cert-footer">
-                <p><CheckCircle size={16} color="var(--accent-blue)" /> <em>Continuous Learning:</em> Regularly updating skills via new certification programs.</p>
+            <div className="cert-footer-tray">
+                <div className="bento-card cert-status-pod">
+                    <p><CheckCircle size={18} color="#10B981" /> <strong>Continuous Learning:</strong> Currently pursuing advanced Cloud Engineering and DevOps standards.</p>
+                </div>
             </div>
 
             <style>{`
-        .section-header-left {
-           margin-bottom: 40px;
-        }
-        .section-header-left h2 {
-           font-size: 2rem;
-           margin-bottom: 8px;
-           color: var(--text-primary);
-        }
-        .section-header-left p {
-           color: var(--text-secondary);
-        }
+                .cert-mosaic {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 20px;
+                }
 
-        .certs-grid {
-           display: grid;
-           grid-template-columns: 1fr 1fr;
-           gap: 20px;
-        }
+                .cert-item {
+                    display: flex;
+                    gap: 16px;
+                    padding: 24px;
+                    align-items: center;
+                }
 
-        .cert-card {
-           display: flex;
-           gap: 16px;
-           background: var(--bg-card);
-           border: 1px solid var(--border-subtle);
-           padding: 32px;
-           border-radius: 20px;
-           transition: transform 0.2s;
-        }
-        .cert-card:hover {
-           transform: translateY(-3px);
-           border-color: var(--border-highlight);
-        }
+                .cert-badge-icon {
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 12px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                }
 
-        .cert-icon {
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           flex-shrink: 0;
-        }
+                .cert-info h4 {
+                    font-size: 0.95rem;
+                    margin: 0 0 4px 0;
+                    color: var(--text-primary);
+                    font-weight: 700;
+                    line-height: 1.3;
+                }
 
-        .cert-content {
-           flex: 1;
-        }
+                .cert-meta-row {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    font-size: 0.8rem;
+                    color: var(--text-secondary);
+                    margin-bottom: 8px;
+                }
 
-        .cert-content h4 {
-           font-size: 1rem;
-           margin-bottom: 6px;
-           line-height: 1.3;
-           color: var(--text-primary);
-           font-weight: 600;
-        }
+                .cert-meta-row .dot { font-weight: 700; }
 
-        .cert-meta {
-           font-size: 0.8rem;
-           color: var(--text-secondary);
-           margin-bottom: 12px;
-           display: flex;
-           align-items: center;
-           gap: 6px;
-        }
-        .dot-separator { font-weight: 700; color: #4B5563; }
+                .cert-tag-cloud {
+                    display: flex;
+                    gap: 4px;
+                }
 
-        .cert-skills {
-           display: flex;
-           gap: 6px;
-           flex-wrap: wrap;
-        }
+                .cert-mini-tag {
+                    font-size: 0.7rem;
+                    background: rgba(0,0,0,0.03);
+                    padding: 2px 8px;
+                    border-radius: 4px;
+                    color: #64748B;
+                    font-weight: 600;
+                }
 
-        .mini-tag {
-           font-size: 0.75rem;
-           background: rgba(0,0,0,0.05);
-           padding: 3px 8px;
-           border-radius: 6px;
-           color: #94A3B8;
-           border: 1px solid rgba(0,0,0,0.05);
-        }
-        .more-tag {
-           font-size: 0.7rem;
-           color: #64748B;
-           padding: 3px 4px;
-        }
-        
-        .cert-footer {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-subtle);
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-        .cert-footer p { display: flex; align-items: center; gap: 8px; }
+                .cert-footer-tray {
+                    margin-top: 24px;
+                }
 
-        @media (max-width: 900px) {
-           .certs-grid { grid-template-columns: 1fr; }
-        }
-      `}</style>
+                .cert-status-pod {
+                    padding: 20px 32px;
+                }
+
+                .cert-status-pod p {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    margin: 0;
+                    font-size: 0.95rem;
+                    color: var(--text-secondary);
+                }
+
+                @media (max-width: 1100px) {
+                    .cert-mosaic { grid-template-columns: 1fr 1fr; }
+                }
+
+                @media (max-width: 768px) {
+                    .cert-mosaic { grid-template-columns: 1fr; }
+                    .cert-item { padding: 20px; }
+                    .cert-status-pod { padding: 20px; }
+                }
+            `}</style>
         </section>
     );
 };

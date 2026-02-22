@@ -1,191 +1,150 @@
 import React from 'react';
-import { Github, Linkedin, Instagram, Youtube, Mail, MapPin, Globe } from 'lucide-react';
+import { Github, Mail } from 'lucide-react';
 
 const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="site-footer">
-      <div className="container footer-grid">
-
-        {/* Brand & Contact */}
-        <div className="footer-col">
-          <h3 className="footer-brand">Rofi.</h3>
-          <p className="footer-tagline">Building the web of tomorrow, one pixel at a time.</p>
-
-          <div className="contact-list">
-            <div className="contact-item">
-              <Mail size={18} /> <span>rofi.darmawan@outlook.com</span>
+    <footer className="footer-site">
+      <div className="container">
+        <div className="footer-mosaic">
+          {/* CTA Pod */}
+          <div className="bento-card cta-pod">
+            <div className="cta-content">
+              <h2>Let's build the next big thing.</h2>
+              <p>Engineering robust systems and human-centric experiences.</p>
+              <div className="social-links-row">
+                <a href="https://github.com/rofiperlungoding" target="_blank" rel="noopener noreferrer" className="social-pill">
+                  <Github size={18} /> GitHub
+                </a>
+                <a href="mailto:rofid@example.com" className="social-pill">
+                  <Mail size={18} /> Email
+                </a>
+              </div>
             </div>
-            <div className="contact-item">
-              <MapPin size={18} /> <span>South Tangerang, Indonesia</span>
-            </div>
-            <div className="contact-item">
-              <Globe size={18} /> <span>Professional Proficiency: English (C1)</span>
+          </div>
+
+          {/* Copyright/Meta Pod */}
+          <div className="bento-card meta-pod">
+            <div className="footer-brand">
+              <img src="/Logo RDT Full.png" alt="RDT Logo" className="footer-logo" />
             </div>
           </div>
         </div>
 
-        {/* Navigation */}
-        <div className="footer-col">
-          <h4>Menu</h4>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#achievements">Achievements</a></li>
-          </ul>
+        <div className="footer-bottom">
+          <p>© Rofi's Portfolio</p>
         </div>
-
-        {/* Socials */}
-        <div className="footer-col">
-          <h4>Connect</h4>
-
-          <div className="social-group">
-            <span className="group-label">Tech Profile</span>
-            <div className="social-icons">
-              <a href="https://github.com/rofiperlungoding" target="_blank" rel="noreferrer"><Github size={20} /></a>
-              <a href="#" target="_blank" rel="noreferrer"><Linkedin size={20} /></a>
-            </div>
-          </div>
-
-          <div className="social-group">
-            <span className="group-label">Creative Profile</span>
-            <div className="social-icons">
-              <a href="https://instagram.com/rofidoesthings" target="_blank" rel="noreferrer"><Instagram size={20} /></a>
-              <a href="#" target="_blank" rel="noreferrer"><Youtube size={20} /></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="footer-bottom container">
-        <p>&copy; {currentYear} Rofi Does Things. All rights reserved.</p>
-        <p className="built-with">Built with React + Vite. Designed in Dark.</p>
       </div>
 
       <style>{`
-        .site-footer {
-           background: var(--bg-card);
-           padding: 80px 0 30px;
-           border-top: 1px solid var(--border-subtle);
-           margin-top: 80px;
-           color: var(--text-primary);
+        .footer-site {
+          padding: 80px 0 100px; /* Increased bottom padding to push it down */
+          position: relative;
+          z-index: 10;
         }
 
-        .footer-grid {
-           display: grid;
-           grid-template-columns: 2fr 1fr 1fr;
-           gap: 40px;
-           margin-bottom: 60px;
+        .footer-mosaic {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          gap: 24px;
         }
 
-        .footer-brand {
-           font-size: 2rem;
-           font-weight: 800;
-           margin-bottom: 16px;
-           background: linear-gradient(135deg, black 0%, #64748B 100%);
-           -webkit-background-clip: text;
-           -webkit-text-fill-color: transparent;
+        .cta-pod {
+          padding: 60px;
+          background: linear-gradient(145deg, rgba(37, 99, 235, 0.05) 0%, rgba(255, 255, 255, 0) 100%) !important;
+          border-color: rgba(37, 99, 235, 0.2) !important;
         }
 
-        .footer-tagline {
-           color: var(--text-secondary);
-           margin-bottom: 30px;
-           max-width: 300px;
-           line-height: 1.6;
-           font-size: 1.1rem;
+        .cta-pod h2 {
+          font-size: 2.5rem;
+          margin-bottom: 16px;
+          font-weight: 700;
+          color: var(--text-primary);
+          letter-spacing: -0.02em;
         }
 
-        .contact-list {
-           display: flex;
-           flex-direction: column;
-           gap: 16px;
-        }
-        .contact-item {
-           display: flex;
-           align-items: center;
-           gap: 12px;
-           color: var(--text-secondary);
-           font-size: 0.95rem;
-           transition: color 0.2s;
-        }
-        .contact-item:hover {
-            color: var(--text-primary);
+        .cta-pod p {
+          font-size: 1.1rem;
+          color: var(--text-secondary);
+          margin-bottom: 32px;
         }
 
-        .footer-col h4 {
-           font-size: 1.2rem;
-           margin-bottom: 24px;
-           color: var(--text-primary);
-           font-weight: 600;
+        .social-links-row {
+          display: flex;
+          gap: 16px;
         }
 
-        .footer-col ul {
-           list-style: none;
-           padding: 0;
-           margin: 0;
-        }
-        .footer-col ul li {
-           margin-bottom: 16px;
-        }
-        .footer-col ul li a {
-           color: #94A3B8;
-           text-decoration: none;
-           transition: color 0.2s;
-           font-size: 1rem;
-        }
-        .footer-col ul li a:hover {
-           color: var(--accent-blue);
+        .social-pill {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px 24px;
+          background: var(--text-primary);
+          color: white;
+          border-radius: 99px;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.95rem;
+          transition: all 0.2s;
         }
 
-        .social-group {
-           margin-bottom: 24px;
+        .social-pill:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+          opacity: 0.9;
         }
-        .group-label {
-           display: block;
-           font-size: 0.75rem;
-           text-transform: uppercase;
-           color: #64748B;
-           margin-bottom: 12px;
-           font-weight: 700;
-           letter-spacing: 0.05em;
+
+        .meta-pod {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 40px;
         }
-        .social-icons {
-           display: flex;
-           gap: 14px;
+
+        .footer-logo {
+          height: 60px;
+          width: auto;
+          margin-bottom: 12px;
+          display: block;
         }
-        .social-icons a {
-           width: 42px;
-           height: 42px;
-           border-radius: 12px;
-           background: rgba(0,0,0,0.05);
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           color: var(--text-secondary);
-           transition: all 0.2s;
-           border: 1px solid rgba(0,0,0,0.05);
+
+        .footer-copyright {
+          font-size: 0.85rem;
+          color: var(--text-secondary);
+          margin: 0;
+          opacity: 0.7;
         }
-        .social-icons a:hover {
-           background: var(--accent-blue);
-           border-color: var(--accent-blue);
-           transform: translateY(-3px);
+
+        .tech-badge {
+          font-size: 0.75rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: #94A3B8;
+          padding: 8px 16px;
+          background: rgba(0,0,0,0.03);
+          border-radius: 8px;
+          width: fit-content;
         }
 
         .footer-bottom {
-           padding-top: 30px;
-           border-top: 1px solid var(--border-subtle);
-           display: flex;
-           justify-content: space-between;
-           color: #64748B;
-           font-size: 0.9rem;
+          margin-top: 60px;
+          text-align: center;
+          border-top: 1px solid var(--border-subtle);
+          padding-top: 40px;
         }
 
-        @media (max-width: 768px) {
-           .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-           .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+        .footer-bottom p {
+          font-size: 0.9rem;
+          color: var(--text-secondary);
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+          font-weight: 600;
+          opacity: 0.6;
+        }
+
+        @media (max-width: 900px) {
+          .footer-mosaic { grid-template-columns: 1fr; }
+          .cta-pod { padding: 40px; }
         }
       `}</style>
     </footer>
