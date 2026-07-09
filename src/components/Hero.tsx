@@ -32,7 +32,7 @@ const Hero: React.FC = () => {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 24px;
+            padding: 120px 24px 80px 24px;
             position: relative;
         }
 
