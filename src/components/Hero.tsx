@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
             max-width: 800px;
             text-align: center;
             z-index: 2;
-            padding-bottom: 8vh;
+            padding-bottom: 0;
         }
 
         .hero-title {
