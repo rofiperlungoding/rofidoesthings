@@ -69,7 +69,6 @@ const TechStack: React.FC = () => {
           transition: transform 0.2s ease;
         }
         .tech-category:hover {
-          transform: translateY(-5px);
           background: #F0F9FF;
         }
 

@@ -19,7 +19,8 @@ const ExperienceSection: React.FC = () => {
                     <div className="role-header">
                         <div>
                             <h4>Promotions Intern</h4>
-                            <span className="company-name">Suhud Adiyanto</span>
+                            <span className="company-name">Tokyo8 Indonesia</span>
+                            <span className="supervisor-note">Under supervision of Suhud Adiyanto</span>
                         </div>
                         <div className="role-period">July 2025</div>
                     </div>
@@ -97,6 +98,15 @@ const ExperienceSection: React.FC = () => {
                     color: var(--accent-blue);
                     font-weight: 600;
                     font-size: 1rem;
+                }
+
+                .supervisor-note {
+                    display: block;
+                    color: var(--text-secondary);
+                    font-size: 0.85rem;
+                    font-weight: 400;
+                    margin-top: 4px;
+                    font-style: italic;
                 }
 
                 .role-period {

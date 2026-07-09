@@ -21,7 +21,7 @@ const EducationSection: React.FC = () => {
                             <h4>Computer Engineering</h4>
                             <span className="inst-name">Universitas Brawijaya</span>
                         </div>
-                        <div className="edu-period">2021 - Present</div>
+                        <div className="edu-period">2025 - Present</div>
                     </div>
 
                     <div className="edu-stats">
@@ -45,7 +45,7 @@ const EducationSection: React.FC = () => {
                 <div className="bento-card mosaic-standard-edu">
                     <div className="edu-header">
                         <h4>Mathematics & Science</h4>
-                        <div className="edu-period">2018 - 2021</div>
+                        <div className="edu-period">2022 - 2025</div>
                     </div>
                     <span className="inst-name">MA Pembangunan Jakarta</span>
                 </div>

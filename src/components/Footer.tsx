@@ -88,8 +88,6 @@ const Footer: React.FC = () => {
         }
 
         .social-pill:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 10px 20px rgba(0,0,0,0.1);
           opacity: 0.9;
         }
 

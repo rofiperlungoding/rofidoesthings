@@ -5,11 +5,6 @@ const Hero: React.FC = () => {
   return (
     <section className="hero-section">
       <div className="container hero-container">
-        {/* Eyebrow Tag */}
-        <div className="hero-eyebrow accent-text">
-          Rofi Darmawan · Engineer & Builder
-        </div>
-
         {/* Main Heading */}
         <h1 className="hero-title">
           <span className="accent-text">Built to Build</span><br />
@@ -62,23 +57,14 @@ const Hero: React.FC = () => {
             padding-bottom: 8vh;
         }
 
-        .hero-eyebrow {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.4em;
-            margin-bottom: 40px;
-        }
-
         .hero-title {
-            font-size: 6rem;
-            font-size: 5.5rem; /* Adjusted from 6rem */
-            line-height: 0.95;
-            margin-bottom: 32px;
-            font-weight: 700; /* Adjusted from 800 */
-            letter-spacing: -0.03em; /* Adjusted from -0.04em */
+            font-size: 4.2rem;
+            line-height: 1.15;
+            margin-bottom: 48px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
             color: #000000;
-            max-width: 700px;
+            max-width: 800px;
         }
 
         .accent-text {
@@ -96,8 +82,8 @@ const Hero: React.FC = () => {
 
         .hero-actions {
             display: flex;
-            gap: 16px;
-            margin-bottom: 80px;
+            gap: 20px;
+            margin-bottom: 120px;
         }
 
         .btn-dark {

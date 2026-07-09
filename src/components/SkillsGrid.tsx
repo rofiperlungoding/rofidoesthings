@@ -104,7 +104,6 @@ const SkillsGrid: React.FC = () => {
 
         .constellation-pod:hover {
             border-color: var(--border-highlight);
-            transform: translateY(-4px);
             background: linear-gradient(145deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 100%);
         }
 
