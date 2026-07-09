@@ -1,5 +1,4 @@
 import React from 'react';
-import { Code, Settings, Cloud } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
@@ -24,15 +23,6 @@ const Hero: React.FC = () => {
           <a href="mailto:rofi.darmawan@outlook.com" className="btn btn-outline accent-border-btn">
             Get in Touch
           </a>
-        </div>
-
-        {/* Tech Stack Strip */}
-        <div className="tech-strip">
-          <div className="tech-logos">
-            <div className="tech-item"><Code size={16} className="accent-text" /> <span>React & TypeScript</span></div>
-            <div className="tech-item"><Settings size={16} className="accent-text" /> <span>IoT Systems</span></div>
-            <div className="tech-item"><Cloud size={16} className="accent-text" /> <span>Cloud Architecture</span></div>
-          </div>
         </div>
       </div>
 
@@ -72,12 +62,13 @@ const Hero: React.FC = () => {
         }
 
         .hero-desc {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             color: #475569;
             max-width: 600px;
-            margin-bottom: 56px;
+            margin-bottom: 48px;
             line-height: 1.6;
             font-weight: 400;
+            text-align: center;
         }
 
         .hero-actions {
@@ -125,36 +116,10 @@ const Hero: React.FC = () => {
             color: #2563EB;
         }
 
-        .tech-strip {
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-
-        .tech-strip:hover {
-            opacity: 1;
-        }
-        
-        .tech-logos {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .tech-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #1E293B;
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-
         @media (max-width: 768px) {
             .hero-title { font-size: 3rem; }
-            .hero-desc { font-size: 1.1rem; }
+            .hero-desc { font-size: 1rem; }
             .hero-actions { flex-direction: column; width: 100%; }
-            .tech-logos { gap: 24px; }
             .hero-eyebrow { letter-spacing: 0.2em; font-size: 0.7rem; }
         }
     `}</style>
